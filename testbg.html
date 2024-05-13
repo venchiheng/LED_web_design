@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="relative">
+        <img src="desktop.png" alt="desktop">
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center p-32">
+            <h1 class="font-mono text-5xl mb-[50px] text-center">Welcome to NeoScript</h1>
+            <input class="min-w-[100px] max-w-[908px] w-[520px] h-[50px]" type="text" placeholder="Please input your text...">
+
+            <label class="mt-[20px]" for="bgcolor">Background Color:</label>
+            <select class="min-w-[100px] max-w-[908px] w-[520px] h-[50px] mt-[20px]" name="backgroundColor" id="bgcolor">
+                <option value=" ">Black</option>
+                <option value=" ">Blue</option>
+                <option value=" ">Green</option>
+                <option value=" ">Pink</option>
+            </select>
+            <div class="flex flex-row gap-[30px] mt-[20px]">
+                <div class="flex flex-col">
+                    <label for="textcolor">Text Color:</label>
+                    <select class="mt-[20px] w-[245px] h-[50px]" name="textColor" id="textcolor">
+                        <option value=" ">Black</option>
+                        <option value=" ">Blue</option>
+                        <option value=" ">Green</option>
+                        <option value=" ">Pink</option>
+                    </select>
+                </div>
+                <div class="flex flex-col">
+                    <label for="textfont">Text Font:</label>
+                    <select class="mt-[20px] w-[245px] h-[50px]" name="textFont" id="textfont">
+                        <option value=" ">Serif</option>
+                        <option value=" ">Mono</option>
+                        <option value=" ">Calibri</option>
+                        <option value=" ">Cambria</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flex flex-row gap-10 mt-[20px]">
+                <button class="bg-gray-600 text-white h-[50px] w-[100px]">Reset</button>
+                <button class="bg-blue-500 text-white h-[50px] w-[100px]">Done!</button>
+            </div>
+        </div>
+        
+    </div>
+    
+</body>
+</html>
