@@ -5,15 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Image</title>
     <style>
-        .bordered-img {
-            border: 10px black solid;
+        .container {
+            position: relative;
             width: 700px;
             height: 1250px;
+        }
+        .bordered-img {
+            border: 5px gray solid;
+            width: 100%;
+            height: 100%;
+        }
+        .welcome-message {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 50px; 
+            font-size: 30px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <h1>LED Board</h1>
-    <img src="lotus.jpg" alt="lotus" class="bordered-img">
+    <div class="container">
+        <img src="testbackgound.jpg" alt="lotus" class="bordered-img">
+        <p class="welcome-message">Welcome to NeoScript</p>
+    </div>
 </body>
 </html>
