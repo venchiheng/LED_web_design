@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Image</title>
+    <title>My image</title>
     <style>
         .container {
             position: relative;
             width: 700px;
-            height: 1250px;
+            height: 950px;
         }
         .bordered-img {
             border: 5px gray solid;
@@ -24,9 +24,73 @@
             height: 50px; 
             font-size: 30px;
             color: white;
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.329);
+            padding-top: 15px;
+            padding-bottom: 5px;
             text-align: center;
+        }
+        .input-container {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 50px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .input-container input[type="text"] {
+            width: 600px;
+            height: 60px;
+            background-color: whitesmoke;
+            border: none;
+            outline: none;
+            padding: 5px;
+            box-sizing: border-box;
+            border-radius: 5px;
+            font-size: 20px;
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+        .input-container select {
+            width: 100%;
+            height: 60px;
+            font-size: 24px; /* Adjust font size as needed */
+            background-color: whitesmoke;
+            border: none;
+            outline: none;
+            padding: 5px;
+            box-sizing: border-box;
+            border-radius: 5px;
+        }
+        .input-container input[type="text"]::placeholder {
+            font-size: 18px; 
+        }
+        .background-color {
+            color: azure;
+            text-align: start;
+            font-size: 20px;
+            padding-top: 10px;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .btn-container button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .reset-btn {
+            background-color: rgb(209, 51, 51);
+            color: white;
+        }
+        .done-btn {
+            background-color: rgb(70, 230, 70);
+            color: white;
         }
     </style>
 </head>
@@ -34,7 +98,70 @@
     <h1>LED Board</h1>
     <div class="container">
         <img src="testbackgound.jpg" alt="lotus" class="bordered-img">
-        <p class="welcome-message">Welcome to NeoScript</p>
+        <div class="welcome-message">Welcome to NeoScript</div>
+        <div class="input-container">
+            <input type="text" id="userInput1" name="userInput1" placeholder="Please input your text here........">
+            <p class="background-color">Background-Color</p>
+            <select id="colorSelect" name="color">
+                <option value="red">Red</option>
+                <option value="blue">Blue</option>
+                <option value="pink">Pink</option>
+                <option value="white">White</option>
+                <option value="black">Black</option>
+            </select>
+            <p class="background-color">Font Color</p>
+            <select id="color-text" name="color">
+                <option value="black">Black</option>
+                <option value="pink">Pink</option>
+                <option value="whitesmoke">Whitesmoke</option>
+                <option value="gray">Gray</option>
+            </select>
+            <p class="background-color">Text Font</p>
+            <select id="Text-Font" name="Font">
+                <option value="Arial">Arial</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Verdana">Verdana</option>
+                <option value="Helvetica">Helvetica</option>
+                <option value="Courier New">Courier New</option>
+                <option value="Georgia">Georgia</option>
+            </select>
+            <div class="btn-container">
+                <button class="reset-btn">Reset</button>
+                <button class="done-btn">Done!</button>
+            </div>
+        </div>
     </div>
+
+    <script>
+        const colorSelect = document.getElementById('colorSelect');
+        const colorTextSelect = document.getElementById('color-text');
+        const fontSelect = document.getElementById('Text-Font');
+        const userInput = document.getElementById('userInput1');
+        const resetBtn = document.querySelector('.reset-btn');
+        const doneBtn = document.querySelector('.done-btn');
+
+        colorSelect.addEventListener('change', function() {
+            userInput.style.backgroundColor = this.value;
+        });
+
+        colorTextSelect.addEventListener('change', function() {
+            userInput.style.color = this.value;
+        });
+
+        fontSelect.addEventListener('change', function() {
+            userInput.style.fontFamily = this.value;
+        });
+
+        resetBtn.addEventListener('click', function() {
+            userInput.style.backgroundColor = 'whitesmoke';
+            userInput.style.color = 'black';
+            userInput.style.fontFamily = 'Arial';
+        });
+
+        doneBtn.addEventListener('click', function() {
+            // Add functionality for what should happen when "Done!" is clicked
+            alert('Form submitted successfully!');
+        });
+    </script>
 </body>
 </html>
