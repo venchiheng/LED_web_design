@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .display-text {
+            font-size: 30px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="display-text" id="displayText"></div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const userInputValue = urlParams.get('userInput');
+        const backgroundColorValue = urlParams.get('backgroundColor');
+        const fontColorValue = urlParams.get('fontColor');
+        const fontValue = urlParams.get('font');
+
+        const displayText = document.getElementById('displayText');
+        displayText.textContent = userInputValue;
+        displayText.style.backgroundColor = backgroundColorValue;
+        displayText.style.color = fontColorValue;
+        displayText.style.fontFamily = fontValue;
+    </script>
+</body>
+</html>
