@@ -164,40 +164,21 @@
         });
 
         doneBtn.addEventListener('click', function() {
-            const newPageContent = `
-                <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>LED Board Display</title>
-                    <style>
-                        body {
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            height: 100vh;
-                            margin: 0;
-                            background-color: ${colorSelect.value};
-                        }
-                        .display-text {
-                            font-family: ${fontSelect.value};
-                            color: ${colorTextSelect.value};
-                            font-size: 30px;
-                            padding: 10px;
-                            border-radius: 5px;
-                        }
-                    </style>
-                </head>
-                <body>
-                    <div class="display-text">${userInput.value}</div>
-                </body>
-                </html>
-            `;
-            const newWindow = window.open('', '_blank');
-            newWindow.document.write(newPageContent);
-            newWindow.document.close();
+            const userInputValue = userInput.value;
+            const backgroundColorValue = colorSelect.value;
+            const fontColorValue = colorTextSelect.value;
+            const fontValue = fontSelect.value;
+
+            const dataParams = new URLSearchParams({
+                userInput: userInputValue,
+                backgroundColor: backgroundColorValue,
+                fontColor: fontColorValue,
+                font: fontValue
+            }).toString();
+
+            window.location.href = `display.html?${dataParams}`;
         });
+        
     </script>
 </body>
 </html>
