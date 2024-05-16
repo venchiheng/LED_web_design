@@ -7,25 +7,31 @@
     <style>
         body {
             display: flex;
-            justify-content: right;
+            justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
             overflow: hidden; /* Hide horizontal overflow */
+            background-color: black;
         }
         .display-container {
             width: 100%;
             position: relative;
         }
         .display-text {
-            display: flex;
-            justify-content: center;
-            max-width:100vw ;
-            font-size: 20px;
-            padding: 10px;
+            text-shadow: 
+                0 0 5px rgb(97, 176, 207),
+                0 0 10px rgb(97, 176, 207),
+                0 0 20px rgb(97, 176, 207),
+                0 0 30px rgb(97, 176, 207),
+                0 0 40px rgb(97, 176, 207);
+            display: inline-block;
+            /* max-width:100vw ;   Large font size */
+            font-size: 25vw;
+            padding: 5px;
             border-radius: 5px;
             white-space: nowrap; 
-            animation: scrollLeftToRight 8s linear infinite; /* Adjust the animation duration and timing function */
+            animation: scrollLeftToRight 5s linear infinite; /* Adjust the animation duration and timing function */
         }
 
 
@@ -52,6 +58,8 @@
         const fontColorValue = urlParams.get('fontColor') || 'black';
         const fontValue = urlParams.get('font') || 'Arial, sans-serif';
 
+        document.body.style.backgroundColor = backgroundColorValue;
+
         const displayText = document.getElementById('displayText');
         displayText.textContent = userInputValue;
         displayText.style.backgroundColor = backgroundColorValue;
@@ -59,6 +67,11 @@
         displayText.style.fontFamily = fontValue;
 
         
+        //Adjust animation duration based on text length
+        const textLength = userInputValue.length;
+        const animationDuration = Math.max(5, textLength * 1);   // Ensure at least 15s duration
+        displayText.style.animationDuration = `${animationDuration}s`;
+
         function goBack() {
             displayText.classList.add('fade-out');
             setTimeout(() => {
@@ -66,11 +79,19 @@
             }, 1000); // Wait for the transition to complete
         }
 
+        // document.addEventListener('keydown', function(event) {
+        //     if (event.key === 'Escape') {
+        //         goBack();
+        //     }
+
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
-                goBack();
+                window.location.href = 'LED.html';  // Update this URL as needed
             }
         });
     </script>
 </body>
-</html>
+</html> 
+
+
+
