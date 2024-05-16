@@ -3,45 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LED Board</title>
+    <title>NeoScript</title>
     <style>
+        
         .container {
             position: relative;
         }
-        .bordered-img {
+        .phone-bg {
+            width: 100%;          
+        }
+        .desktop-bg {
             width: 100%;
-            height: 100%;
+            display: none;      
         }
         .welcome-message {
+            width: 65%;
             position: absolute;
             top: 10%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 600px;
             height: 50px; 
-            font-size: 50px;
+            font-size: 25px;
             color: black ;
-            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-family: monospace;
             font-weight: bold;
-            margin-top: 80px;
+            margin-top: 10%;
             padding-top: 18px;
             padding-bottom: 5px;
             text-align: center;
         }
         .input-container {
-            margin-top: 90px;
+            margin-top: 30%;
             position: absolute;
-            top: 20%;
+            top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 600px;
-            height: 1px;
+            width: 70%;
             text-align: center;
             border-radius: 5px;
+            display: flex;
+            flex-direction: column;
         }
         .input-container input[type="text"] {
             width: 100%;
-            height: 60px;
+            height: 50px;
             background-color: rgb(200, 208, 228);
             border: none;
             outline: none;
@@ -52,39 +57,39 @@
             transition: background-color 0.3s ease; /* Smooth transition */
         }
         .input-container select {
-            width: 100%;
-            height: 60px;
-            font-size: 24px; /* Adjust font size as needed */
+            height: 50px;
+            font-size: 18px; /* Adjust font size as needed */
             background-color: rgb(200, 208, 228);
             border: none;
             outline: none;
             padding: 5px;
             box-sizing: border-box;
             border-radius: 5px;
-            margin-top: 10px;
+
         }
         .input-container input[type="text"]::placeholder {
             font-size: 18px; 
+            
         }
         .background-color {
-            color: azure;
+            color: black;
             text-align: start;
             font-size: 20px;
-            padding-top: 10px;
         }
         .btn-container {
-            display: flex;
-            justify-content: center;
             margin-top: 20px;
-        }
-        .btn-container button {
+            display: flex;
+            justify-content: space-evenly;
             
+        }
+        .btn-container button {   
             padding: 10px 30px;
             font-size: 18px;
             margin: 0 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            justify-content: space-between;
         }
         .reset-btn {
             background-color: rgb(209, 51, 51);
@@ -94,16 +99,53 @@
             background-color: rgb(70, 230, 70);
             color: white;
         }
+
+        @media only screen and (min-width: 800px) {
+        /* For desktop: */            
+            .phone-bg{
+                display: none;
+                visibility: hidden;
+            }
+            .desktop-bg{
+                display: block;
+                visibility: visible;
+                
+            }
+            .welcome-message {
+            width: 85%;
+            top: 5%;
+            height: 50px; 
+            font-size: 50px;
+            }
+            .input-container {
+                margin-top: 17%;
+                width: 70%;              
+            }
+            #color-text {
+                width: 45%;
+            }
+            #Text-Font {
+                width: 45%;
+                margin-top: 5px;
+                margin-left: 55%;
+            }
+            .background-color#text_font_responsive {
+                margin-top: -100px;
+                margin-left: 55%;
+            }
+        }
+        
     </style>
 </head>
 <body>
     
     <div class="container">
-        <img src="phone.png" alt="lotus" class="bordered-img">
+        <img src="phone.png" alt="lotus" class="phone-bg">
+        <img src="desktop.png" alt="lotus" class="desktop-bg">
         <div class="welcome-message">Welcome to NeoScript</div>
         <div class="input-container">
             <input type="text" id="userInput1" name="userInput1" placeholder="Please input your text here........">
-            <p class="background-color">Background-Color</p>
+            <p class="background-color">Background Color</p>
             <select id="colorSelect" name="color">
                 <option value="red">Red</option>
                 <option value="blue">Blue</option>
@@ -111,14 +153,14 @@
                 <option value="white">White</option>
                 <option value="black">Black</option>
             </select>
-            <p class="background-color">Font Color</p>
+            <p class="background-color">Text Color</p>
             <select id="color-text" name="color">
                 <option value="black">Black</option>
                 <option value="pink">Pink</option>
                 <option value="whitesmoke">Whitesmoke</option>
                 <option value="gray">Gray</option>
             </select>
-            <p class="background-color">Text Font</p>
+            <p class="background-color" id="text_font_responsive">Text Font</p>
             <select id="Text-Font" name="Font">
                 <option value="Arial">Arial</option>
                 <option value="Times New Roman">Times New Roman</option>
@@ -155,7 +197,6 @@
         });
 
         resetBtn.addEventListener('click', function() {
-            userInput.style.backgroundColor = 'whitesmoke';
             userInput.style.color = 'black';
             userInput.style.fontFamily = 'Arial';
             userInput.value = '';
