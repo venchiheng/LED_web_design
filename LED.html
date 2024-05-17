@@ -72,6 +72,7 @@
             font-size: 20px;
             padding-top: 10px;
         }
+
         .btn-container {
             display: flex;
             justify-content: center;
@@ -94,6 +95,9 @@
             background-color: rgb(70, 230, 70);
             color: white;
         }
+        .add-emoji{
+            
+        }
     </style>
 </head>
 <body>
@@ -103,6 +107,18 @@
         <div class="welcome-message">Welcome to NeoScript</div>
         <div class="input-container">
             <input type="text" id="userInput1" name="userInput1" placeholder="Please input your text here........">
+
+            <div class="add-emoji">
+            <select id="emojiSelect" name="emoji">
+                <option value="&#128522;">😊</option>
+                <option value="&#128525;">😍</option>
+                <option value="&#128514;">😂</option>
+                <option value="&#128540;">😜</option>
+                <option value="&#128558;">😮</option>
+
+            </select>
+            </div>
+
             <p class="background-color">Background-Color</p>
             <select id="colorSelect" name="color">
                 <option value="red">Red</option>
