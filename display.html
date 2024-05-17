@@ -19,14 +19,8 @@
             position: relative;
         }
         .display-text {
-            text-shadow: 
-                0 0 5px rgb(97, 176, 207),
-                0 0 10px rgb(97, 176, 207),
-                0 0 20px rgb(97, 176, 207),
-                0 0 30px rgb(97, 176, 207),
-                0 0 40px rgb(97, 176, 207);
+            
             display: inline-block;
-            /* max-width:100vw ;   Large font size */
             font-size: 25vw;
             padding: 5px;
             border-radius: 5px;
@@ -76,13 +70,8 @@
             displayText.classList.add('fade-out');
             setTimeout(() => {
                 window.location.href = 'LED.html'; // Update this URL as needed
-            }, 1000); // Wait for the transition to complete
+            }, 1); // Wait for the transition to complete
         }
-
-        // document.addEventListener('keydown', function(event) {
-        //     if (event.key === 'Escape') {
-        //         goBack();
-        //     }
 
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {

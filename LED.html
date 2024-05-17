@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NeoScript</title>
-    <style>    
+    <style>
         .container {
             position: relative;
         }
@@ -18,12 +18,12 @@
         .welcome-message {
             width: 65%;
             position: absolute;
-            top: 10%;
+            top: 20%;
             left: 50%;
             transform: translate(-50%, -50%);
             height: 50px; 
             font-size: 30px;
-            color: black ;
+            color: black;
             font-family: monospace;
             font-weight: bold;
             margin-top: 10%;
@@ -34,7 +34,7 @@
         .input-container {
             margin-top: 30%;
             position: absolute;
-            top: 50%;
+            top: 60%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 70%;
@@ -53,22 +53,20 @@
             box-sizing: border-box;
             border-radius: 5px;
             font-size: 20px;
-            transition: background-color 0.3s ease; /* Smooth transition */
+            transition: background-color 0.3s ease;
         }
         .input-container select {
             height: 50px;
-            font-size: 18px; /* Adjust font size as needed */
+            font-size: 18px;
             background-color: rgb(200, 208, 228);
             border: none;
             outline: none;
             padding: 5px;
             box-sizing: border-box;
             border-radius: 5px;
-
         }
         .input-container input[type="text"]::placeholder {
-            font-size: 18px; 
-            
+            font-size: 18px;
         }
         .background-color {
             color: black;
@@ -79,9 +77,8 @@
             margin-top: 20px;
             display: flex;
             justify-content: space-evenly;
-            
         }
-        .btn-container button {   
+        .btn-container button {
             padding: 10px 30px;
             font-size: 18px;
             margin: 0 10px;
@@ -98,27 +95,55 @@
             background-color: rgb(70, 230, 70);
             color: white;
         }
-
+        .preview-container {
+            overflow: hidden;
+            margin-top: 10px;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50% ) translatey(+400%);
+            width: 80%;
+            padding: 5px;
+            z-index: 10;
+            border: 2px solid black; 
+        }
+        .preview-text {
+            display: flexbox;
+            width: 100%;
+            height:40%;
+            font-size: 250%;
+            font-family: monospace;
+            font-weight: bold;
+            white-space: nowrap;
+            animation: scrollLeftToRight 1s linear infinite;
+        }
+        @keyframes scrollLeftToRight {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
         @media only screen and (min-width: 800px) {
-        /* For desktop: */            
-            .phone-bg{
+            .phone-bg {
                 display: none;
                 visibility: hidden;
             }
-            .desktop-bg{
+            .desktop-bg {
                 display: block;
                 visibility: visible;
-                
             }
             .welcome-message {
-            width: 85%;
-            top: 5%;
-            height: 50px; 
-            font-size: 50px;
+                width: 85%;
+                top: 25%;
+                height: 50px;
+                font-size: 50px;
             }
             .input-container {
-                margin-top: 17%;
-                width: 70%;              
+                margin-top: 30%;
+                top: 65%;
+                width: 70%;
             }
             #color-text {
                 width: 45%;
@@ -133,14 +158,16 @@
                 margin-left: 55%;
             }
         }
-        
     </style>
 </head>
 <body>
-
     <div class="container">
         <img src="phone.png" alt="lotus" class="phone-bg">
         <img src="desktop.png" alt="lotus" class="desktop-bg">
+        <div class="preview-container">
+            <div class="preview-background"></div>
+            <div class="preview-text" id="previewText">Your text will scroll here</div>
+        </div>
         <div class="welcome-message">Welcome to NeoScript</div>
         <div class="input-container">
             <input type="text" id="userInput1" name="userInput1" placeholder="Please input your text here........">
@@ -180,25 +207,32 @@
         const colorTextSelect = document.getElementById('color-text');
         const fontSelect = document.getElementById('Text-Font');
         const userInput = document.getElementById('userInput1');
+        const previewText = document.getElementById('previewText');
         const resetBtn = document.querySelector('.reset-btn');
         const doneBtn = document.querySelector('.done-btn');
 
-        colorSelect.addEventListener('change', function() {
-            userInput.style.backgroundColor = this.value;
-        });
+        function updatePreview() {
+            previewText.textContent = userInput.value || 'Your text will scroll here';
+            previewText.style.backgroundColor = colorSelect.value;
+            previewText.style.color = colorTextSelect.value;
+            previewText.style.fontFamily = fontSelect.value;
 
-        colorTextSelect.addEventListener('change', function() {
-            userInput.style.color = this.value;
-        });
+            const textLength = userInput.value.length;
+            const animationDuration = Math.max(5, textLength * 1); 
+            previewText.style.animationDuration = `${animationDuration}s`;
+        }
 
-        fontSelect.addEventListener('change', function() {
-            userInput.style.fontFamily = this.value;
-        });
+        colorSelect.addEventListener('change', updatePreview);
+        colorTextSelect.addEventListener('change', updatePreview);
+        fontSelect.addEventListener('change', updatePreview);
+        userInput.addEventListener('input', updatePreview);
 
         resetBtn.addEventListener('click', function() {
-            userInput.style.color = 'black';
-            userInput.style.fontFamily = 'Arial';
             userInput.value = '';
+            colorSelect.value = 'white';
+            colorTextSelect.value = 'black';
+            fontSelect.value = 'Arial';
+            updatePreview();
         });
 
         doneBtn.addEventListener('click', function() {
@@ -213,10 +247,18 @@
                 fontColor: fontColorValue,
                 font: fontValue
             }).toString();
+            const previewBackground = document.querySelector('.preview-background');
+            previewBackground.style.transition = 'none'; // Remove transition temporarily
+            previewBackground.style.backgroundColor = backgroundColorValue;
+            setTimeout(() => {
+            previewBackground.style.transition = ''; 
+           }, 50); 
 
             window.location.href = `display.html?${dataParams}`;
         });
-        
+
+      
+        updatePreview();
     </script>
 </body>
 </html>
