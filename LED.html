@@ -3,89 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LED Board</title>
+    <title>NeoScript</title>
     <style>
         .container {
             position: relative;
         }
-        .bordered-img {
+        .phone-bg {
+            width: 100%;          
+        }
+        .desktop-bg {
             width: 100%;
-            height: 100%;
+            display: none;      
         }
         .welcome-message {
+            width: 65%;
             position: absolute;
             top: 10%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 600px;
             height: 50px; 
-            font-size: 50px;
-            color: black ;
-            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 30px;
+            color: black;
+            font-family: monospace;
             font-weight: bold;
-            margin-top: 80px;
+            margin-top: 10%;
             padding-top: 18px;
             padding-bottom: 5px;
             text-align: center;
         }
         .input-container {
-            margin-top: 90px;
+            margin-top: 35%;
             position: absolute;
-            top: 20%;
+            top: 390px;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 600px;
-            height: 1px;
+            width: 70%;
             text-align: center;
             border-radius: 5px;
+            display: flex;
+            flex-direction: column;
         }
         .input-container input[type="text"] {
             width: 100%;
-            height: 60px;
+            height: 50px;
             background-color: rgb(200, 208, 228);
             border: none;
             outline: none;
             padding: 5px;
             box-sizing: border-box;
-            border-radius: 5px;
+            border-radius: 5px 0px 0px 5px;
             font-size: 20px;
-            transition: background-color 0.3s ease; /* Smooth transition */
+            transition: background-color 0.3s ease;
         }
         .input-container select {
-            width: 100%;
-            height: 60px;
-            font-size: 24px; /* Adjust font size as needed */
+            height: 50px;
+            font-size: 15px;
             background-color: rgb(200, 208, 228);
             border: none;
             outline: none;
             padding: 5px;
             box-sizing: border-box;
             border-radius: 5px;
-            margin-top: 10px;
         }
         .input-container input[type="text"]::placeholder {
-            font-size: 18px; 
+            font-size: 18px;
         }
         .background-color {
-            color: azure;
+            color: black;
             text-align: start;
             font-size: 20px;
-            padding-top: 10px;
+            margin-bottom: 2px;
+            margin-top: 10px;
         }
 
         .btn-container {
-            display: flex;
-            justify-content: center;
             margin-top: 20px;
+            display: flex;
+            justify-content: space-evenly;
         }
         .btn-container button {
-            
             padding: 10px 30px;
             font-size: 18px;
             margin: 0 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            justify-content: space-between;
         }
         .reset-btn {
             background-color: rgb(209, 51, 51);
@@ -95,31 +98,210 @@
             background-color: rgb(70, 230, 70);
             color: white;
         }
-        .add-emoji{
-            
+        .preview-container {
+            overflow: hidden;
+            position: absolute;
+            top: -45%;
+            left: 0%;
+            width: 100%;
+            z-index: 10;
+        }
+        .preview-text {
+            text-align: center;
+            width: 100%;
+            height: 150px;
+            font-size: 100px;
+            font-family: monospace;
+            font-weight: bold;
+            white-space: nowrap;
+            animation: scrollLeftToRight 1s linear infinite;
+        }
+        @keyframes scrollLeftToRight {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        .input-emoji{
+            display: flex;
+        }
+        .emoji{
+            border: none;
+            background-color: rgb(200, 208, 228);
+            width: 45px;
+            border-radius: 0px 5px 5px 0px;
+            cursor: pointer;
+        }
+        .emoji:hover{
+            color: gray;
+        }
+        .emoji-list{
+            background-color: rgb(200, 208, 228);
+            font-size: 24px;
+            border-radius: 0px 5px 5px 0px;
+            overflow-y: scroll;
+            cursor: pointer;
+            transition: 0.5s height;
+            display: none;
+            position: absolute;
+            top: 10%;
+            height: 100px;
+            text-align: left;
+        }
+        #emoji-list span:hover{
+            background-color: rgb(159, 158, 158);
+        }
+
+        @media only screen and (min-width: 640px) {
+            .phone-bg {
+                display: none;
+                visibility: hidden;
+            }
+            .desktop-bg {
+                display: block;
+                visibility: visible;
+            }
+            .welcome-message {
+                width: 85%;
+                top: 5%;
+                height: 50px;
+                font-size: 50px;
+            }
+            .background-color{
+                font-size: 23px;
+                padding: 10px;
+            }
+            .input-container {
+                top: 200px;
+                width: 70%;
+            }
+            .input-emoji{
+                margin-top: 40px;
+                font-size: 25px;
+            }
+            .emoji-list{
+                font-size: 27px;
+                top: 23%;
+                height: 150px;
+                text-align: left;
+            }
+            .input-container input[type="text"] {
+                font-size: 25px;
+            }
+
+            .input-container select {
+                height: 50px;
+                font-size: 20px;
+                background-color: rgb(200, 208, 228);
+                border: none;
+                outline: none;
+                padding: 5px;
+                box-sizing: border-box;
+                border-radius: 5px;
+            }
+            .preview-text {
+                text-align: center;
+                width: ;
+                height:150px;
+                font-size: 100px;
+                font-family: monospace;
+                font-weight: bold;
+                white-space: nowrap;
+                animation: scrollLeftToRight 1s linear infinite;
+            }
+            #color-text {
+                width: 45%;
+            }
+            #Text-Font {
+                width: 45%;
+                margin-left: 55%;
+            }
+            .background-color#text_font_responsive {
+                margin-top: -100px;
+                margin-left: 55%;
+            }
         }
     </style>
 </head>
 <body>
-    
     <div class="container">
-        <img src="phone.png" alt="lotus" class="bordered-img">
+        <img src="phone.png" alt="lotus" class="phone-bg">
+        <img src="desktop.png" alt="lotus" class="desktop-bg">
         <div class="welcome-message">Welcome to NeoScript</div>
         <div class="input-container">
-            <input type="text" id="userInput1" name="userInput1" placeholder="Please input your text here........">
-
-            <div class="add-emoji">
-            <select id="emojiSelect" name="emoji">
-                <option value="&#128522;">😊</option>
-                <option value="&#128525;">😍</option>
-                <option value="&#128514;">😂</option>
-                <option value="&#128540;">😜</option>
-                <option value="&#128558;">😮</option>
-
-            </select>
+            <div class="preview-container">
+                <div class="preview-background"></div>
+                <div class="preview-text" id="previewText">Your text will scroll here</div>
             </div>
-
-            <p class="background-color">Background-Color</p>
+            <div class="input-emoji">
+                <input type="text" id="userInput1" name="userInput1" placeholder="Please input your text here........">
+                <button id="emojiBtn" class="emoji">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z" />
+                    </svg>
+                </button>
+            </div> 
+            <div id="emoji-list" class="emoji-list">
+                <span class="emoji1">&#128512;</span>
+                <span class="emoji1">&#128513;</span>
+                <span class="emoji1">&#128514;</span>
+                <span class="emoji1">&#128515;</span>
+                <span class="emoji1">&#128516;</span>
+                <span class="emoji1">&#128517;</span>
+                <span class="emoji1">&#128518;</span>
+                <span class="emoji1">&#128519;</span>
+                <span class="emoji1">&#128520;</span>
+                <span class="emoji1">&#128521;</span>
+                <span class="emoji1">&#128522;</span>
+                <span class="emoji1">&#128523;</span>
+                <span class="emoji1">&#128524;</span>
+                <span class="emoji1">&#128525;</span>
+                <span class="emoji1">&#128526;</span>
+                <span class="emoji1">&#128527;</span>
+                <span class="emoji1">&#128528;</span>
+                <span class="emoji1">&#128529;</span>
+                <span class="emoji1">&#128530;</span>
+                <span class="emoji1">&#128531;</span>
+                <span class="emoji1">&#128532;</span>
+                <span class="emoji1">&#128533;</span>
+                <span class="emoji1">&#128534;</span>
+                <span class="emoji1">&#128535;</span>
+                <span class="emoji1">&#128536;</span>
+                <span class="emoji1">&#128537;</span>
+                <span class="emoji1">&#128538;</span>
+                <span class="emoji1">&#128539;</span>
+                <span class="emoji1">&#128540;</span>
+                <span class="emoji1">&#128541;</span>
+                <span class="emoji1">&#128542;</span>
+                <span class="emoji1">&#128543;</span>
+                <span class="emoji1">&#128544;</span>
+                <span class="emoji1">&#128545;</span>
+                <span class="emoji1">&#128546;</span>
+                <span class="emoji1">&#128547;</span>
+                <span class="emoji1">&#128548;</span>
+                <span class="emoji1">&#128549;</span>
+                <span class="emoji1">&#128550;</span>
+                <span class="emoji1">&#128551;</span>
+                <span class="emoji1">&#128552;</span>
+                <span class="emoji1">&#128553;</span>
+                <span class="emoji1">&#128554;</span>
+                <span class="emoji1">&#128555;</span>
+                <span class="emoji1">&#128556;</span> 
+                <span class="emoji1">&#128557;</span> 
+                <span class="emoji1">&#128558;</span> 
+                <span class="emoji1">&#128559;</span> 
+                <span class="emoji1">&#128560;</span> 
+                <span class="emoji1">&#128561;</span> 
+                <span class="emoji1">&#128562;</span> 
+                <span class="emoji1">&#128563;</span> 
+                <span class="emoji1">&#128564;</span> 
+                <span class="emoji1">&#128565;</span> 
+                <span class="emoji1">&#128566;</span> 
+                <span class="emoji1">&#128567;</span>      
+            </div>
+            <p class="background-color">Background Color</p>
             <select id="colorSelect" name="color">
                 <option value="red">Red</option>
                 <option value="blue">Blue</option>
@@ -127,14 +309,14 @@
                 <option value="white">White</option>
                 <option value="black">Black</option>
             </select>
-            <p class="background-color">Font Color</p>
+            <p class="background-color">Text Color</p>
             <select id="color-text" name="color">
                 <option value="black">Black</option>
                 <option value="pink">Pink</option>
                 <option value="whitesmoke">Whitesmoke</option>
                 <option value="gray">Gray</option>
             </select>
-            <p class="background-color">Text Font</p>
+            <p class="background-color" id="text_font_responsive">Text Font</p>
             <select id="Text-Font" name="Font">
                 <option value="Arial">Arial</option>
                 <option value="Times New Roman">Times New Roman</option>
@@ -151,6 +333,8 @@
     </div>
 
     <script>
+        const emojiBtn = document.getElementById('emojiBtn')
+        const emojiList = document.getElementById('emoji-list');
         const colorSelect = document.getElementById('colorSelect');
         const colorTextSelect = document.getElementById('color-text');
         const fontSelect = document.getElementById('Text-Font');
@@ -158,23 +342,42 @@
         const resetBtn = document.querySelector('.reset-btn');
         const doneBtn = document.querySelector('.done-btn');
 
-        colorSelect.addEventListener('change', function() {
-            userInput.style.backgroundColor = this.value;
+       emojiBtn.addEventListener('click', function() {
+            if (emojiList.style.display === 'none' || emojiList.style.display === '') {
+                emojiList.style.display = 'block';
+            } else {
+                emojiList.style.display = 'none';
+            }
+        });
+        emojiList.addEventListener('click', function(event) {
+            if (event.target.tagName === 'SPAN') {
+                userInput.value += event.target.textContent;
+            }
         });
 
-        colorTextSelect.addEventListener('change', function() {
-            userInput.style.color = this.value;
-        });
 
-        fontSelect.addEventListener('change', function() {
-            userInput.style.fontFamily = this.value;
-        });
+        function updatePreview() {
+            previewText.textContent = userInput.value || 'Your text will scroll here';
+            previewText.style.backgroundColor = colorSelect.value;
+            previewText.style.color = colorTextSelect.value;
+            previewText.style.fontFamily = fontSelect.value;
+
+            const textLength = userInput.value.length;
+            const animationDuration = Math.max(2, textLength * 1); 
+            previewText.style.animationDuration = `${animationDuration}s`;
+        }
+
+        colorSelect.addEventListener('change', updatePreview);
+        colorTextSelect.addEventListener('change', updatePreview);
+        fontSelect.addEventListener('change', updatePreview);
+        userInput.addEventListener('input', updatePreview);
 
         resetBtn.addEventListener('click', function() {
-            userInput.style.backgroundColor = 'whitesmoke';
-            userInput.style.color = 'black';
-            userInput.style.fontFamily = 'Arial';
             userInput.value = '';
+            colorSelect.value = 'white';
+            colorTextSelect.value = 'black';
+            fontSelect.value = 'Arial';
+            updatePreview();
         });
 
         doneBtn.addEventListener('click', function() {
@@ -189,10 +392,18 @@
                 fontColor: fontColorValue,
                 font: fontValue
             }).toString();
+            const previewBackground = document.querySelector('.preview-background');
+            previewBackground.style.transition = 'none'; // Remove transition temporarily
+            previewBackground.style.backgroundColor = backgroundColorValue;
+            setTimeout(() => {
+            previewBackground.style.transition = ''; 
+           }, 50); 
 
             window.location.href = `display.html?${dataParams}`;
         });
-        
+
+      
+        updatePreview();
     </script>
 </body>
 </html>

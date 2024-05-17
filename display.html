@@ -11,42 +11,48 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            overflow: hidden; /* Hide horizontal overflow */
+            background-color: black;
+        }
+        .display-container {
+            width: 100%;
             position: relative;
         }
         .display-text {
-            font-size: 30px;
-            padding: 10px;
+            
+            display: inline-block;
+            font-size: 25vw;
+            padding: 5px;
             border-radius: 5px;
-            transition: opacity 1s ease; /* Transition for the fade-out effect */
+            white-space: nowrap; 
+            animation: scrollLeftToRight 5s linear infinite; /* Adjust the animation duration and timing function */
         }
-        .fade-out {
-            opacity: 0;
+
+
+        @keyframes scrollLeftToRight {
+            0% {
+                transform: translateX(100%); /* Start position (100% width from right) */
+            }
+            100% {
+                transform: translateX(-100%); /* End position (100% width from left) */
+            }
         }
-        .Button1 {
-            background-color: pink;
-            width: 100px;
-            height: 40px;
-            border: 3px whitesmoke;
-            border-radius: 2px;
-            text-align: center;
-            position: absolute;
-            bottom: 50px;
-            left: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+        
     </style>
 </head>
 <body>
-    <div class="display-text" id="displayText"></div>
-    
+    <div class="display-container">
+        <div class="display-text" id="displayText"></div>
+    </div>
+
     <script>
         const urlParams = new URLSearchParams(window.location.search);
-        const userInputValue = urlParams.get('userInput');
-        const backgroundColorValue = urlParams.get('backgroundColor');
-        const fontColorValue = urlParams.get('fontColor');
-        const fontValue = urlParams.get('font');
+        const userInputValue = urlParams.get('userInput') || 'Default Text';
+        const backgroundColorValue = urlParams.get('backgroundColor') || 'white';
+        const fontColorValue = urlParams.get('fontColor') || 'black';
+        const fontValue = urlParams.get('font') || 'Arial, sans-serif';
+
+        document.body.style.backgroundColor = backgroundColorValue;
 
         const displayText = document.getElementById('displayText');
         displayText.textContent = userInputValue;
@@ -54,18 +60,27 @@
         displayText.style.color = fontColorValue;
         displayText.style.fontFamily = fontValue;
 
+        
+        //Adjust animation duration based on text length
+        const textLength = userInputValue.length;
+        const animationDuration = Math.max(5, textLength * 1);   // Ensure at least 15s duration
+        displayText.style.animationDuration = `${animationDuration}s`;
+
         function goBack() {
             displayText.classList.add('fade-out');
             setTimeout(() => {
-                window.location.href = 'LED.html'; // Replace 'LED.html' with the actual URL of your LED page
-            }, 1000); // Wait for the animation to complete
+                window.location.href = 'LED.html'; // Update this URL as needed
+            }, 1); // Wait for the transition to complete
         }
 
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
-                goBack();
+                window.location.href = 'LED.html';  // Update this URL as needed
             }
         });
     </script>
 </body>
-</html>
+</html> 
+
+
+
