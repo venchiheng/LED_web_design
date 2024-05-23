@@ -25,7 +25,7 @@
             padding: 5px;
             border-radius: 5px;
             white-space: nowrap; 
-            animation: scrollLeftToRight 5s linear infinite; /* Adjust the animation duration and timing function */
+            animation: scrollLeftToRight 1s linear infinite; /* Adjust the animation duration and timing function */
         }
 
 
@@ -63,14 +63,14 @@
         
         //Adjust animation duration based on text length
         const textLength = userInputValue.length;
-        const animationDuration = Math.max(5, textLength * 1);   // Ensure at least 15s duration
+        const animationDuration = Math.max(0.01, textLength * 1);   // Ensure at least 15s duration
         displayText.style.animationDuration = `${animationDuration}s`;
 
         function goBack() {
             displayText.classList.add('fade-out');
             setTimeout(() => {
                 window.location.href = 'LED.html'; // Update this URL as needed
-            }, 1); // Wait for the transition to complete
+            }, 100); // Wait for the transition to complete
         }
 
         document.addEventListener('keydown', function(event) {

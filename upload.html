@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Page</title>
+</head>
+<body>
+    <h1>Display Page</h1>
+    <div id="display">
+       
+        <img id="displayImage" src="" alt="Uploaded Image">
+    </div>
+
+    <script>
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const uploadedFile = urlParams.get('file');
+        
+        // Update display elements
+       
+        document.getElementById('displayImage').src = uploadedFile ? uploadedFile : 'placeholder.jpg'; // Placeholder image
+
+        // Optional: Add a button or link to go back to the upload page
+        const backButton = document.createElement('button');
+        backButton.textContent = 'Back to Upload Page';
+        backButton.addEventListener('click', function() {
+            window.location.href = 'test_upload.html';
+        });
+        document.body.appendChild(backButton);
+    </script>
+</body>
+</html>
