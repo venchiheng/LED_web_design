@@ -54,8 +54,8 @@ function createParticles() {
 function createSnowflakes() {
     const x = Math.random() * canvas.width;
     const y = Math.random() * canvas.height;
-    const size = Math.random() * 2 + 10;
-    const speedY = Math.random() * 2 + 0.5;
+    const size = Math.random() * 3 + 7;
+    const speedY = Math.random() * 1 + 0.5;
     particlesArray.push(new Particle(x, y, size, 0, speedY, 'white'));
 }
 

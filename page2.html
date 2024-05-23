@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Display Text with Effect</title>
+<style>
+    /* CSS styles for effects */
+    @keyframes snowflake {
+        0% { transform: translateY(-100%); }
+        100% { transform: translateY(100vh); }
+    }
+
+    @keyframes bubble {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-100%); }
+    }
+
+    .snowflake {
+        position: absolute;
+        color: #fff;
+        font-size: 2em;
+        animation: snowflake 10s linear infinite;
+    }
+
+    .bubble {
+        position: absolute;
+        color: #00f;
+        font-size: 2em;
+        animation: bubble 5s ease-in-out infinite alternate;
+    }
+</style>
+</head>
+<body>
+    <div id="displayContainer"></div>
+    <script src="js/display.js"></script>
+</body>
+</html>
