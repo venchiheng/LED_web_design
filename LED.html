@@ -115,7 +115,7 @@
             font-family: monospace;
             font-weight: bold;
             white-space: nowrap;
-            animation: scrollLeftToRight 1s linear infinite;
+            animation: scrollLeftToRight 5s linear infinite;
         }
         @keyframes scrollLeftToRight {
             0% {
@@ -365,9 +365,10 @@
             previewText.style.fontFamily = fontSelect.value;
 
             const textLength = userInput.value.length;
-            const animationDuration = Math.max(2, textLength * 1); 
+            const animationDuration = Math.max(5, textLength * 0.001); 
             previewText.style.animationDuration = `${animationDuration}s`;
         }
+        
 
         colorSelect.addEventListener('change', updatePreview);
         colorTextSelect.addEventListener('change', updatePreview);
