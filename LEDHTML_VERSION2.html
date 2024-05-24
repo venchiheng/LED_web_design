@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .frame{
+            background-color: white;
+            border-radius: 20px;  
+            padding: 20px;     
+        }
+        .container{
+
+        }
+        h1{
+            text-align: center;
+            font-size: 40px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .textWrap{
+            align-items: center;
+            height: 250px;
+            background-color: lightskyblue;
+            border-radius: 20px;
+            border: 2px solid black;
+            border-bottom: 3px solid black;
+            margin-left: 40px;
+            margin-right: 40px;
+        }
+        .displayContainer{
+            align-items: center;
+            height: 180px;
+            background-color: black;
+            border-radius: 20px;
+            border-bottom: 2px solid black;
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+            
+        }
+        .displayText{
+            color: white;
+            animation: loopText 2.5s infinite linear;  
+        }
+        @keyframes loopText {
+            from{
+                transform: translateX(100%);
+            }
+            to{
+                transform: translateX(-200%);
+            }
+        }
+        
+        .inputText{
+            height: 70px;
+            background-color: lightskyblue;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;    
+                
+        }
+        #insertText{
+            width: 100%;
+            height: 45px;
+            border-radius: 20px 0px 0px 20px;
+            border: 2px solid black;
+            margin-left: 10px;
+            border-right: none;
+            font-size: large;            
+        }
+        #emojiBtn{
+            width: 50px;
+            height: 50px;
+            color: black;
+            background: none;
+            background-color: white;
+            border-left: 2px;
+            border-right: 2px;
+            cursor: pointer;
+        }
+        #nextBtn{
+            width: 50px;
+            height: 50px;
+            color: black;
+            background: none;
+            background-color: white;
+            border: 2px solid black;
+            border-left: none;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .editorContainer{
+            margin-top: 10px;
+            height: 100vw;
+            background-color: white;
+            border-radius: 20px;
+            border: 2px solid black;                    
+        }
+        .editorChoice{
+            height: 70px;
+            background-color: rgb(135, 206, 250);
+            border-radius: 20px;
+            border-bottom: 2px solid black;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+        .editorChoice button{
+            border: none;
+            background-color: transparent;
+            font-size: x-large;
+            cursor: pointer;
+            width: 100%;
+        }
+        #editorText{
+            border-top-left-radius: 20px;
+        }
+        #editorBg{
+            border-top-right-radius: 20px;
+        }
+        .textContent{
+            height: 100%;
+            margin-right: 20px;
+            margin-left: 20px;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 3%;
+            display: none;
+
+        }
+        span{
+            color: black;
+            font-size: x-large;
+        }
+        .size-Btn Button{
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            margin-right: 10px;
+            border: none;
+            background-color: gainsboro;
+            font-size: medium;
+            cursor: pointer;
+        }
+        .color-Btn Button{
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            margin-right: 10px;
+            border: none;
+            font-size: medium;
+            cursor: pointer;
+        }
+        #colorBlack{
+            background-color: black;
+        }
+        #colorWhite{
+            background-color: white;
+            border: 1px solid black;
+        }
+        #colorRed{
+            background-color: red;
+        }
+        #colorYellow{
+            background-color: rgb(249, 213, 104);
+        }
+        #colorGreen{
+            background-color: greenyellow;
+        }
+        #colorMix{
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            margin-right: 10px;
+            margin-top: 10px;
+            border: none;
+            font-size: medium;
+            cursor: pointer;
+            border-radius: 100%;
+        }
+        /* This is where we control on swith or toggle */
+        .switch {
+            position: relative;
+            display: inline-block;
+            top: -8px;
+            width: 60px;
+            height: 30px;
+        }
+        .switch input { 
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 2px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+        .slider.round {
+            border-radius: 34px;
+        }
+        .slider.round:before {
+            border-radius: 50%;
+        }
+        /* end of switch */
+        .effectContent{
+            height: 100%;
+            margin-right: 20px;
+            margin-left: 20px;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 1%;
+            display: none;
+        }
+        .bgContent{
+            height: 100%;
+            margin-right: 20px;
+            margin-left: 20px;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 1%;
+            display: none;
+
+        }
+        .img-Btn Button{
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            margin-right: 10px;
+            border: none;
+            font-size: medium;
+            cursor: pointer;
+        }
+        .bgf-Btn Button{
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            margin-right: 10px;
+            border: none;
+            font-size: medium;
+            cursor: pointer;
+        }
+    </style>
+
+    <div class="frame">
+        <div class="container">
+            <h1>Welcome to NeoScript</h1>
+            <!-- display text -->
+            <div class="textWrap">
+                <div class="displayContainer">
+                    <div class="displayText"></div>
+                </div>
+                <div class="inputText">
+                    <input id="insertText" type="text" placeholder="Please input your text...">
+                    <button id="emojiBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z" />
+                        </svg>
+                    </button>
+                    <button id="nextBtn" >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg> 
+                    </button>
+                </div>
+            </div>
+            <!-- editor container -->
+            <div class="editorContainer">
+                <!-- button group -->
+                <div class="editorChoice">
+                    <button id="editorText">Text</button>
+                    <button id="editorEffect">Effect</button>
+                    <button id="editorBg">Background</button>
+                </div>
+                <!-- text editor -->
+                <div class="textContent">
+                    <div>
+                        <span>Font:</span> <br>
+                        <select name="font" id="fontChooser" >
+                            <!-- insert Font -->
+                        </select>
+                    </div>
+                    <div>
+                        <span>Size:</span>
+                        <div class="size-Btn">
+                            <button id="size25">25</button>
+                            <button id="size50">50</button>
+                            <button id="size75">75</button>
+                            <button id="size100">100</button>
+                        </div>
+                    </div>
+                    <div>
+                        <span>Color:</span>
+                        <div class="color-Btn">
+                            <button id="colorBlack"></button>
+                            <button id="colorWhite"></button>
+                            <button id="colorRed"></button>
+                            <button id="colorYellow"></button>
+                            <button id="colorGreen"></button>
+                            <input type="color" name="colorMix" id="colorMix">
+                        </div>
+                    </div>
+                    <div>
+                        <span>Shadow:</span>
+                        <div>
+                            <span>OFF</span>
+                                <label class="switch">
+                                    <input type="checkbox" placeholder="toggle" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                                <span>ON</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- effect editor -->
+                <div class="effectContent">
+                    <div>
+                        <span>Animation:</span> <br>
+                        <div class="size-Btn">
+                            <button id="leftAnime"></button>
+                            <button id="stopAnime"></button>
+                            <button id="rightAnime"></button>
+                            <button id="up-downAnime"></button>
+                        </div>
+                    </div>
+                    <div>
+                        <span>Speed:</span>
+                        <div class="size-Btn">
+                            <button id="speed0.5">0.5x</button>
+                            <button id="speed1">1x</button>
+                            <button id="speed1.5">1.5x</button>
+                            <button id="speed2">2x</button>
+                        </div>
+                    </div>
+                    <div>
+                        <span>Blink:</span>
+                        <div class="size-Btn">
+                            <button id="blink0.5">0.5x</button>
+                            <button id="blink1">1x</button>
+                            <button id="blink1.5">1.5x</button>
+                            <button id="blink2">2x</button>
+                        </div>
+                    </div>
+                    <div>
+                        <span>Filter:</span>
+                        <div class="size-Btn">
+                            <button id="filterText1"></button>
+                            <button id="filterText2"></button>
+                        </div>
+                    </div>
+                </div>
+                <!-- background editor -->
+                <div class="bgContent">
+                    <div class="color-btn">
+                        <span>Color:</span>
+                        <div class="color-Btn">
+                            <button id="colorBlack"></button>
+                            <button id="colorWhite"></button>
+                            <button id="colorRed"></button>
+                            <button id="colorYellow"></button>
+                            <button id="colorGreen"></button>
+                            <input type="color" name="colorMix" id="colorMix">
+                        </div>
+                    </div>
+                    <div class="image-Btn">
+                        <span>Background Image</span>
+                        <div class="img-Btn">
+                            <button id="img1"></button>
+                            <button id="img2"></button>
+                            <button id="img3"></button>
+                            <button id="img4"></button>
+                            <button id="img5"></button>
+                            <button id="img6"></button>
+                        </div>
+                    </div>
+                    <div class="background-Btn">
+                        <span>Background filter:</span>
+                        <div class="bgf-Btn">
+                            <button id="bgf1"></button>
+                            <button id="bgf2"></button>
+                            <button id="bgf3"></button>
+                            <button id="bgf4"></button>
+                            <button id="bgf5"></button>
+                            <button id="bgf6"></button>
+                            <button id="bgf7"></button>
+                            <button id="bgf8"></button>
+                            <button id="bgf9"></button>
+                            <button id="bgf10"></button>
+                            <button id="bgf11"></button>
+                        </div>   
+                    </div>                             
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let inputTextEle = document.getElementById('insertText');
+        let displayTextEle = document.getElementsByClassName('displayText');
+        let textEditor = document.getElementById('editorText');
+        let effectEditor = document.getElementById('editorEffect');
+        let bgEditor = document.getElementById('editorBg');
+
+        let textContent = document.querySelector('.textContent');
+        let effectContent = document.querySelector('.effectContent');
+        let bgContent = document.querySelector('.bgContent');
+
+        inputTextEle.onkeyup = function() {
+            for(var i = 0; i < displayTextEle.length; i++){
+                displayTextEle.item(i).innerHTML = inputTextEle.value;
+            }
+        }
+
+        let focus = "";
+
+        textEditor.addEventListener('click', () => {
+            resetBtnColor();
+            hideAllContent();
+            if (focus === textEditor .id) {
+                focus = "";
+                return;
+            }
+            focus = textEditor.id;
+            textEditor.style.backgroundColor = "white";
+            textEditor.style.borderTopLeftRadius == "20px";
+            textContent.style.display = "block";
+        });
+
+        effectEditor.addEventListener('click', () => {
+            resetBtnColor();
+            hideAllContent();
+            if (focus === effectEditor.id) {
+                focus = "";
+                return;
+            }
+            focus = effectEditor.id;
+            effectEditor.style.backgroundColor = "white";
+            effectContent.style.display = "block";
+        });
+
+        bgEditor.addEventListener('click', () => {
+            resetBtnColor();
+            hideAllContent();
+            if (focus === bgEditor.id) {
+                focus = "";
+                return;
+            }
+            focus = bgEditor.id;
+            bgEditor.style.backgroundColor = "white";
+            bgContent.style.display = "block";
+        });
+
+        function hideAllContent() {
+            textContent.style.display = "none";
+            effectContent.style.display = "none";
+            bgContent.style.display = "none";
+        }
+
+        function resetBtnColor() {
+            textEditor.style.backgroundColor = "rgb(130, 206, 250)";
+            effectEditor.style.backgroundColor = "rgb(130, 206, 250)";
+            bgEditor.style.backgroundColor = "rgb(130, 206, 250)";
+        }
+    </script>
+</body>
+</html>
