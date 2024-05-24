@@ -1214,6 +1214,19 @@
           displayTextEle.item(i).style.fontFamily = selectedFont;
         }
       });
+
+        const sizeButtons = document.querySelectorAll(".size-Btn button");
+        const displayTextEles = document.getElementsByClassName("displayText");
+
+        sizeButtons.forEach(button => {
+            button.addEventListener("click", (event) => {
+                const newSize = event.target.id.replace('size', '');
+                for (let i = 0; i < displayTextEles.length; i++) {
+                    displayTextEles[i].style.fontSize = `${newSize}px`;
+                }
+            });
+        });
+
       emojiBtn.addEventListener("click", () => {
         if (emojiList.style.display === "none") {
           emojiList.style.display = "block";
