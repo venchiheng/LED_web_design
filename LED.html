@@ -851,8 +851,8 @@
 
 
             <p class="background-color">Text Color</p>
-            <label for="textcolorPicker"></label>
-            <input type="color" id="textcolorPicker" name="textcolorPicker">
+            <label for="TextcolorPicker"></label>
+            <input type="color" id="TextcolorPicker" name="TextcolorPicker">
 
             <div id="colorDidplay"></div>
             <div id="colorValue"></div>
@@ -878,7 +878,7 @@
         const emojiBtn = document.getElementById('emojiBtn')
         const emojiList = document.getElementById('emoji-list');
         const colorPicker = document.getElementById('colorPicker');
-        const textcolorPicker = document.getElementById('textcolorPicker');
+        const TextcolorPicker = document.getElementById('TextcolorPicker');
         const fontSelect = document.getElementById('Text-Font');
         const userInput = document.getElementById('userInput1');
         const resetBtn = document.querySelector('.reset-btn');
@@ -901,7 +901,7 @@
         function updatePreview() {
             previewText.textContent = userInput.value || 'Your text will scroll here';
             previewText.style.backgroundColor = colorPicker.value;
-            previewText.style.color = textcolorPicker.value;
+            previewText.style.color = TextcolorPicker.value;
             previewText.style.fontFamily = fontSelect.value;
 
             const textLength = userInput.value.length;
@@ -912,7 +912,7 @@
 
         colorPicker.addEventListener('change', updatePreview);
 
-        textcolorPicker.addEventListener('change', updatePreview);
+        TextcolorPicker.addEventListener('change', updatePreview);
         fontSelect.addEventListener('change', updatePreview);
         userInput.addEventListener('input', updatePreview);
 
@@ -921,7 +921,7 @@
 
             colorPicker.value = 'white';
 
-            textcolorPicker.value = 'black';
+            TextcolorPicker.value = 'black';
             fontSelect.value = 'Arial';
             updatePreview();
         });
@@ -929,7 +929,7 @@
         doneBtn.addEventListener('click', function() {
             const userInputValue = userInput.value;
             const backgroundColorValue = colorPicker.value;
-            const fontColorValue = textcolorPicker.value;
+            const fontColorValue = TextcolorPicker.value;
             const fontValue = fontSelect.value;
 
             const dataParams = new URLSearchParams({
