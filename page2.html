@@ -1,38 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Display Text with Effect</title>
-<style>
-    /* CSS styles for effects */
-    @keyframes snowflake {
-        0% { transform: translateY(-100%); }
-        100% { transform: translateY(100vh); }
-    }
-
-    @keyframes bubble {
-        0% { transform: translateY(0); }
-        100% { transform: translateY(-100%); }
-    }
-
-    .snowflake {
-        position: absolute;
-        color: #fff;
-        font-size: 2em;
-        animation: snowflake 10s linear infinite;
-    }
-
-    .bubble {
-        position: absolute;
-        color: #00f;
-        font-size: 2em;
-        animation: bubble 5s ease-in-out infinite alternate;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Text with Background Effect</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .background-effect {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .background-effect canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        #displayText {
+            text-align: center;
+            font-size: 48px;
+        }
+    </style>
 </head>
 <body>
-    <div id="displayContainer"></div>
-    <script src="js/display.js"></script>
+    <div class="background-effect">
+        <canvas id="thunderCanvas"></canvas>
+        <canvas id="snowCanvas"></canvas>
+    </div>
+    <div id="displayText"></div>
+
+    <script>
+        const userText = localStorage.getItem('userText');
+        document.getElementById('displayText').innerText = userText;
+
+        // Thunder Effect
+        const thunderCanvas = document.getElementById('thunderCanvas');
+        const thunderCtx = thunderCanvas.getContext('2d');
+        thunderCanvas.width = window.innerWidth;
+        thunderCanvas.height = window.innerHeight;
+
+        function createThunder() {
+            thunderCtx.clearRect(0, 0, thunderCanvas.width, thunderCanvas.height);
+            thunderCtx.fillStyle = 'white';
+            thunderCtx.fillRect(0, 0, thunderCanvas.width, thunderCanvas.height);
+            setTimeout(() => {
+                thunderCtx.clearRect(0, 0, thunderCanvas.width, thunderCanvas.height);
+            }, 100);
+        }
+
+        // Snow Effect
+        const snowCanvas = document.getElementById('snowCanvas');
+        const snowCtx = snowCanvas.getContext('2d');
+        snowCanvas.width = window.innerWidth;
+        snowCanvas.height = window.innerHeight;
+
+        function createSnow() {
+            snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+            snowCtx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+            for (let i = 0; i < 100; i++) {
+                const x = Math.random() * snowCanvas.width;
+                const y = Math.random() * snowCanvas.height;
+                const size = Math.random() * 3;
+                snowCtx.beginPath();
+                snowCtx.arc(x, y, size, 0, Math.PI * 2);
+                snowCtx.closePath();
+                snowCtx.fill();
+            }
+        }
+
+        // Trigger effects periodically
+        setInterval(createThunder, 3000);
+        setInterval(createSnow, 100);
+    </script>
 </body>
 </html>
