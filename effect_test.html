@@ -1,27 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Text Effect Input</title>
-<style>
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Page</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #textInput {
+            font-size: 24px;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        #effectSelector {
+            font-size: 20px;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        #submitBtn {
+            font-size: 20px;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+       
+       
+    </style>
 </head>
 <body>
-    <label for="textInput">Enter Text:</label>
-    <input type="text" id="textInput">
-    <br><br>
-    <label for="effectSelect">Select Effect:</label>
-    <select id="effectSelect">
+    <input type="text" id="textInput" placeholder="Enter your text here">
+    <select id="effectSelector">
+        <option value="particles">Particles</option>
+        <option value="snowflakes">Snowflakes</option>
         <option value="fireworks">Fireworks</option>
-        <option value="snow">Snow</option>
-        <option value="bubble">Bubble</option>
-        <option value="blink">Blink Blink</option>
     </select>
-    <br><br>
-    <button onclick="submitForm()">Submit</button>
+    <button id="submitBtn">Submit</button>
 
-    <script src="background.js"></script>
+    <script>
+        document.getElementById('submitBtn').addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default form submission behavior
+            const userInput = document.getElementById('textInput').value;
+            const selectedEffect = document.getElementById('effectSelector').value;
+            localStorage.setItem('userText', userInput);
+            localStorage.setItem('selectedEffect', selectedEffect);
+            window.location.href = 'page2.html';
+        });
+    </script>
 </body>
 </html>
