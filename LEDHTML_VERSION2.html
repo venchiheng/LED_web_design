@@ -1230,9 +1230,15 @@
         }
       });
 
-    nextBtn.addEventListener("click", () => {
+      nextBtn.addEventListener("click", () => {
+        const inputTextEleValue = insertText.value;
+
+        const dataParams = new URLSearchParams({
+            inputTextEle: inputTextEleValue
+        }).toString();
+
         window.location.href = `display.html?${dataParams}`;
-    });
+        });
     </script>
   </body>
 </html>
