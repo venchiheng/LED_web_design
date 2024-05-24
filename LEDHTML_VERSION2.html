@@ -116,7 +116,7 @@
         overflow-y: scroll;
         cursor: pointer;
         transition: 0.5s height;
-        /* display: none; */
+        display: none;
         position: absolute;
         margin-top: 250px;
         height: 200px;
@@ -180,11 +180,17 @@
         display: flex;
         flex-direction: column;
         gap: 3%;
-        display: none;
       }
       span {
         color: black;
         font-size: x-large;
+      }
+      #fontChooser{
+        margin-top: 10px;
+        width: 200px;
+        height: 50px;
+        font-size: large;
+        border-radius: 10px;
       }
       .size-Btn Button {
         width: 40px;
@@ -196,7 +202,7 @@
         font-size: medium;
         cursor: pointer;
       }
-      .color-Btn Button {
+      .colorText-Btn Button {
         width: 40px;
         height: 40px;
         border-radius: 100%;
@@ -205,23 +211,23 @@
         font-size: medium;
         cursor: pointer;
       }
-      #colorBlack {
+      #colorTBlack {
         background-color: black;
       }
-      #colorWhite {
+      #colorTWhite {
         background-color: white;
         border: 1px solid black;
       }
-      #colorRed {
+      #colorTRed {
         background-color: red;
       }
-      #colorYellow {
+      #colorTYellow {
         background-color: rgb(249, 213, 104);
       }
-      #colorGreen {
+      #colorTGreen {
         background-color: greenyellow;
       }
-      #colorMix {
+      #colorTMix {
         width: 40px;
         height: 40px;
         border-radius: 100%;
@@ -1027,13 +1033,13 @@
             </div>
             <div>
               <span>Color:</span>
-              <div class="color-Btn">
-                <button id="colorBlack"></button>
-                <button id="colorWhite"></button>
-                <button id="colorRed"></button>
-                <button id="colorYellow"></button>
-                <button id="colorGreen"></button>
-                <input type="color" name="colorMix" id="colorMix" />
+              <div class="colorText-Btn">
+                <button id="colorTBlack"></button>
+                <button id="colorTWhite"></button>
+                <button id="colorTRed"></button>
+                <button id="colorTYellow"></button>
+                <button id="colorTGreen"></button>
+                <input type="color" name="colorMix" id="colorTMix" />
               </div>
             </div>
             <div>
@@ -1138,10 +1144,12 @@
       let bgEditor = document.getElementById("editorBg");
       const emojiBtn = document.getElementById("emojiBtn");
       const emojiList = document.getElementById("emojiList");
+      const doneBtn = document.getElementById('nextBtn');
 
       let textContent = document.querySelector(".textContent");
       let effectContent = document.querySelector(".effectContent");
       let bgContent = document.querySelector(".bgContent");
+      
 
       inputTextEle.onkeyup = function () {
         for (var i = 0; i < displayTextEle.length; i++) {
@@ -1217,7 +1225,14 @@
       emojiList.addEventListener("click", (event) => {
         const emoji = event.target.innerText;
         inputTextEle.value += emoji;
+        for (var i = 0; i < displayTextEle.length; i++) {
+          displayTextEle.item(i).style.fontFamily = emojiList;
+        }
       });
+
+    nextBtn.addEventListener("click", () => {
+        window.location.href = `display.html?${dataParams}`;
+    });
     </script>
   </body>
 </html>
