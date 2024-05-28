@@ -1252,13 +1252,12 @@
       });
 
         const sizeButtons = document.querySelectorAll(".size-Btn button");
-        const displayTextEles = document.getElementsByClassName("displayText");
 
         sizeButtons.forEach(button => {
             button.addEventListener("click", (event) => {
                 const newSize = event.target.id.replace('size', '');
-                for (let i = 0; i < displayTextEles.length; i++) {
-                    displayTextEles[i].style.fontSize = `${newSize}px`;
+                for (let i = 0; i < displayTextEle.length; i++) {
+                    displayTextEle[i].style.fontSize = `${newSize}px`;
                 }
             });
         });
@@ -1287,6 +1286,16 @@
         }).toString();
 
         window.location.href = `display.html?${dataParams}`;
+        });
+        const colorButtons = document.querySelectorAll(".colorText-Btn button");
+
+        colorButtons.forEach(button => {
+        button.addEventListener("click", (event) => {
+        const newColor = event.target.id.replace('colorT', ''); // Extract color from button ID
+        for (let i = 0; i < displayTextEle.length; i++) {
+            displayTextEle[i].style.color = newColor; // Change color of each displayText element
+        }
+         });
         });
     </script>
   </body>
