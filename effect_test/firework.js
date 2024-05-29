@@ -1,28 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fireworks</title>
-<style>
-    body {
-        margin: 0;
-        overflow: hidden;
-        background-color: black;
-    }
-    #canvas{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    z-index:-1;
-}
-</style>
-</head>
-<body>
-<canvas id="firework"></canvas>
-<script>
 let canvas, width, height, ctx;
 let fireworks = [];
 let particles = [];
@@ -165,6 +140,3 @@ function windowResized(){
 	ctx.fillStyle = "#000000";
 	ctx.fillRect(0, 0, width, height);
 }
-</script>
-</body>
-</html>

@@ -11,7 +11,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            overflow: hidden; /* Hide horizontal overflow */
+            overflow: hidden; 
             background-color: black;
         }
         .display-container {
@@ -19,25 +19,21 @@
             position: relative;
         }
         .display-text {
-            
             display: inline-block;
             font-size: 25vw;
             padding: 5px;
             border-radius: 5px;
-            white-space: nowrap; 
-            animation: scrollLeftToRight 15s linear infinite; /* Adjust the animation duration and timing function */
+            white-space: nowrap;
+            animation: scrollLeftToRight 15s linear infinite; 
         }
-
-
         @keyframes scrollLeftToRight {
-            to {
-                transform: translateX(100%); /* Start position (100% width from right) */
+            0% {
+                transform: translateX(100%);
             }
             100% {
-                transform: translateX(-100%); /* End position (100% width from left) */
+                transform: translateX(-100%);
             }
         }
-        
     </style>
 </head>
 <body>
@@ -47,40 +43,28 @@
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
-        const userInputValue = urlParams.get('userInput') || 'Default Text';
-        const backgroundColorValue = urlParams.get('backgroundColor') || 'white';
-        const fontColorValue = urlParams.get('fontColor') || 'black';
-        const fontValue = urlParams.get('font') || 'Arial, sans-serif';
+        const userInputValue = urlParams.get('inputTextEle') || 'Default Text';
+        const backgroundColorValue = urlParams.get('bgColor') || 'black';
+        const fontColorValue = urlParams.get('textColor') || 'white';
+        const fontValue = urlParams.get('fontFamily') || 'Arial, sans-serif';
 
         document.body.style.backgroundColor = backgroundColorValue;
 
         const displayText = document.getElementById('displayText');
         displayText.textContent = userInputValue;
-        displayText.style.backgroundColor = backgroundColorValue;
         displayText.style.color = fontColorValue;
         displayText.style.fontFamily = fontValue;
 
-        
-        //Adjust animation duration based on text length
+        // Adjust animation duration based on text length
         const textLength = userInputValue.length;
-        const animationDuration = Math.max(0.01, textLength * 1);   // Ensure at least 15s duration
+        const animationDuration = Math.max(15, textLength * 1); // Ensure at least 15s duration
         displayText.style.animationDuration = `${animationDuration}s`;
-
-        function goBack() {
-            displayText.classList.add('fade-out');
-            setTimeout(() => {
-                window.location.href = 'LED.html'; // Update this URL as needed
-            }, 100); // Wait for the transition to complete
-        }
 
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
-                window.location.href = 'LED.html';  // Update this URL as needed
+                window.location.href = 'LEDHTML_VERSION2.html'; // Update this URL as needed
             }
         });
     </script>
 </body>
-</html> 
-
-
-
+</html>
