@@ -726,6 +726,48 @@
         }
          });
         });
+
+        // Text-ColorMix
+        const colorInput = document.getElementById("colorTMix");
+
+        colorInput.addEventListener("input", (event) => {
+        const newColor = event.target.value;
+        changeTextColor(newColor);
+        });
+
+        function changeTextColor(color) {
+        for (let i = 0; i < displayTextEle.length; i++) {
+        displayTextEle[i].style.color = color;
+        }
+        }
+
+        // Background-Color
+
+        let displayContainerEle = document.getElementsByClassName("displayContainer");
+        
+        // Function to change the background color
+        const changeBackgroundColor = (newColor) => {
+            for (let i = 0; i < displayContainerEle.length; i++) {
+                displayContainerEle[i].style.backgroundColor = newColor;
+            }
+        };
+
+        // Add event listeners to the background color buttons
+        const colorBackgroundButtons = document.querySelectorAll(".color-Btn button");
+        colorBackgroundButtons.forEach(button => {
+            button.addEventListener("click", (event) => {
+                const newColor = event.target.id.replace('color', ''); 
+                changeBackgroundColor(newColor);
+            });
+        });
+
+        // Add event listener to the background color input
+        const colorBackgroundMixInput = document.getElementById("colorMix");
+        colorBackgroundMixInput.addEventListener("input", (event) => {
+            const newColor = event.target.value;
+            changeBackgroundColor(newColor);
+        });
+  
     </script>
   </body>
 </html>
