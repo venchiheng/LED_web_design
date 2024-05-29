@@ -847,6 +847,16 @@ input:checked + .slider:before {
         document.getElementById('blink1').addEventListener('click', () => applyBlinkRate(1));
         document.getElementById('blink1.5').addEventListener('click', () => applyBlinkRate(1.5));
         document.getElementById('blink2').addEventListener('click', () => applyBlinkRate(2));
+
+        //Shadow
+        const shadowToggle = document.querySelector(".switch input");
+
+        shadowToggle.addEventListener("change", () => {
+            const shadowStyle = shadowToggle.checked ? "2px 2px 4px #000000" : "none";
+            for (var i = 0; i < displayTextEle.length; i++) {
+                displayTextEle.item(i).style.textShadow = shadowStyle;
+            }
+        });
     </script>
   </body>
 </html>
