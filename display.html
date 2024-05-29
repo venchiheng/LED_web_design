@@ -24,7 +24,7 @@
             padding: 5px;
             border-radius: 5px;
             white-space: nowrap;
-            animation: scrollLeftToRight 15s linear infinite; 
+            animation: scrollLeftToRight 15s linear infinite, blinkAnimation 0.3s infinite alternate; 
         }
         @keyframes scrollLeftToRight {
             0% {
@@ -32,6 +32,14 @@
             }
             100% {
                 transform: translateX(-100%);
+            }
+        }
+        @keyframes blinkAnimation {
+            0%, 30%, 60%, 100% {
+                opacity: 1;
+            }
+            20%, 40%, 80% {
+                opacity: 0;
             }
         }
     </style>
@@ -45,21 +53,39 @@
         const urlParams = new URLSearchParams(window.location.search);
         const userInputValue = urlParams.get('inputTextEle') || 'Default Text';
         const backgroundColorValue = urlParams.get('bgColor') || 'black';
-        const fontColorValue = urlParams.get('textColor') || 'white';
+        const fontColorValue = urlParams.get('textColor')||  'white';
         const fontValue = urlParams.get('fontFamily') || 'Arial, sans-serif';
+        const blinkSpeedFactor = parseFloat(urlParams.get('blinkSpeedFactor')) || 1; // Default is 1
 
         document.body.style.backgroundColor = backgroundColorValue;
+
+        // Adjust animation duration based on text length and blink speed factor
+        const textLength = userInputValue.length;
+        const animationDuration = Math.max(15, textLength * 1); // Ensure at least 15s duration
 
         const displayText = document.getElementById('displayText');
         displayText.textContent = userInputValue;
         displayText.style.color = fontColorValue;
         displayText.style.fontFamily = fontValue;
-
-        // Adjust animation duration based on text length
-        const textLength = userInputValue.length;
-        const animationDuration = Math.max(15, textLength * 1); // Ensure at least 15s duration
-        displayText.style.animationDuration = `${animationDuration}s`;
-
+        document.addEventListener('DOMContentLoaded',function(){
+            const getQueryParam = (param) => {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        return urlParams.get(param);
+        }
+        const blinkSpeedParam = getQueryParam('blinkSpeed');
+        if (blinkSpeedParam) {
+        const blinkSpeed = parseFloat(blinkSpeedParam);
+        const displayTextEle = document.getElementsByClassName("displayText");
+        for (let i = 0; i < displayTextEle.length; i++) {
+            displayTextEle[i].style.animationDuration = `${blinkSpeed}s`;
+            displayTextEle[i].classList.add('blink');
+        }
+    }
+});
+        
+    
+        
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 window.location.href = 'LEDHTML_VERSION2.html'; // Update this URL as needed
@@ -68,3 +94,4 @@
     </script>
 </body>
 </html>
+display

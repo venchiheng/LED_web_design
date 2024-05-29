@@ -37,7 +37,7 @@
   </head>
   <body>
     <style>
-     .frame {
+    .frame {
   background-color: white;
   border-radius: 20px;
   padding: 20px;
@@ -76,10 +76,7 @@ h1 {
 
 .displayText {
   color: white;
-  animation-name: loopText;
-  animation-duration: 2.5s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
+  animation: loopText 2.5s infinite linear, blink 1s infinite linear;
 }
 
 @keyframes loopText {
@@ -88,6 +85,15 @@ h1 {
   }
   to {
     transform: translateX(-200%);
+  }
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
   }
 }
 
@@ -282,7 +288,6 @@ span {
   width: 0;
   height: 0;
 }
-
 .slider {
   position: absolute;
   cursor: pointer;
@@ -415,21 +420,6 @@ input:checked + .slider:before {
   border-radius: 100%;
 }
 
-@keyframes blink {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
-
-.blink {
-  animation-name: blink;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-}
 
 
     </style>
@@ -837,13 +827,15 @@ input:checked + .slider:before {
         });
 
         function applyBlinkRate(rate) {
+          localStorage.setItem('blinkSpeed', rate);
+      
             for (let i = 0; i < displayTextEle.length; i++) {
                 displayTextEle[i].style.animationDuration = `${rate}s`;
                 displayTextEle[i].classList.add('blink');
             }
         }
 
-   document.getElementById('blink0.5').addEventListener('click', () => applyBlinkRate(0.5));
+        document.getElementById('blink0.5').addEventListener('click', () => applyBlinkRate(0.5));
         document.getElementById('blink1').addEventListener('click', () => applyBlinkRate(1));
         document.getElementById('blink1.5').addEventListener('click', () => applyBlinkRate(1.5));
         document.getElementById('blink2').addEventListener('click', () => applyBlinkRate(2));
