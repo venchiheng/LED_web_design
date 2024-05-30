@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burning Fire Text Effect</title>
+    <style>
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #000; }
+        canvas { border: 1px solid #000; }
+    </style>
+</head>
+<body>
+    <canvas id="textCanvas" width="800" height="400"></canvas>
+    <script src="script.js"></script>
+</body>
+</html>
+
+    <script >
+   const canvas = document.getElementById('textCanvas');
+const ctx = canvas.getContext('2d');
+
+// Text settings
+const text = 'Burning';
+ctx.font = 'bold 80px Arial';
+ctx.textAlign = 'center';
+ctx.textBaseline = 'middle';
+
+let particles = [];
+
+// Particle class to handle individual particles
+class Particle {
+    constructor(x, y, color) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.size = Math.random() * 20 + 10;
+        this.speedY = Math.random() * -1.7 - 0.5;
+        this.speedX = (Math.random() - 0.5) * 1;
+    }
+
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        this.size *= 0.1;
+    }
+
+    draw() {
+        ctx.globalAlpha = 0.8;
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+// Create fire gradient
+const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+gradient.addColorStop(0, '#f00');
+gradient.addColorStop(0.5, '#ffa500');
+gradient.addColorStop(1, '#ff0');
+
+// Function to draw text with particles
+function drawFireText() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw the main text
+    ctx.fillStyle = gradient;
+    ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+
+    // Add particles
+    const textWidth = ctx.measureText(text).width;
+    const textHeight = 80; // Approximate height of the text
+    for (let i = 0; i < 5; i++) {
+        let x = canvas.width / 2 - textWidth / 2 + Math.random() * textWidth;
+        let y = canvas.height / 2 - textHeight / 2 + Math.random() * textHeight;
+        particles.push(new Particle(x, y, 'rgba(255, 69, 0, 1)'));
+    }
+
+    // Update and draw particles
+    particles.forEach((particle, index) => {
+        particle.update();
+        particle.draw();
+
+        if (particle.size < 1) {
+            particles.splice(index, 1);
+        }
+    });
+
+    requestAnimationFrame(drawFireText);
+}
+
+drawFireText();
+
+
+
+    </script>
+</body>
+</html>
