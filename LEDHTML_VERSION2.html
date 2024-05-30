@@ -204,7 +204,7 @@ h1 {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
-  gap: 3%;
+  gap: 1%;
 }
 
 span {
@@ -216,6 +216,8 @@ span {
   margin-top: 10px;
   width: 200px;
   height: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   font-size: large;
   border-radius: 10px;
 }
@@ -225,6 +227,8 @@ span {
   height: 40px;
   border-radius: 100%;
   margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   border: none;
   background-color: gainsboro;
   font-size: medium;
@@ -236,6 +240,8 @@ span {
   height: 40px;
   border-radius: 100%;
   margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   border: none;
   font-size: medium;
   cursor: pointer;
@@ -263,14 +269,20 @@ span {
 }
 
 #colorTMix {
-  width: 40px;
-  height: 40px;
-  border-radius: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  width: 48px;
+  height: 50px;
   margin-right: 10px;
-  margin-top: 10px;
   border: none;
-  font-size: medium;
   cursor: pointer;
+}
+#colorTMix::-webkit-color-swatch{
+  border-radius: 100%;
+}
+#colorTMix::-moz-color-swatch{
   border-radius: 100%;
 }
 
@@ -278,6 +290,8 @@ span {
 .switch {
   position: relative;
   display: inline-block;
+  margin-top: 20px;
+  margin-bottom: 10px;
   top: -8px;
   width: 60px;
   height: 30px;
@@ -345,7 +359,60 @@ input:checked + .slider:before {
   gap: 1%;
   display: none;
 }
-
+.anime-Btn button {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: none;
+  font-size: medium;
+  cursor: pointer;
+}
+.speed-Btn button {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border: none;
+  font-size: medium;
+  cursor: pointer;
+  margin-top: 10px;
+}
+#none-speed{
+  /* position: absolute; */
+}
+.blink-Btn button {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border: none;
+  font-size: medium;
+  cursor: pointer;
+  margin-top: 10px;
+}
+#none-blink{
+  /* position: absolute; */
+  font-size: xx-small;
+}
+.filter-Btn button {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border: none;
+  font-size: medium;
+  cursor: pointer;
+  margin-top: 10px;
+}
+#none-filter{
+  /* position: absolute; */
+}
 .bgContent {
   height: 100%;
   margin-right: 20px;
@@ -362,6 +429,8 @@ input:checked + .slider:before {
   height: 40px;
   border-radius: 100%;
   margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   border: none;
   font-size: medium;
   cursor: pointer;
@@ -372,6 +441,8 @@ input:checked + .slider:before {
   height: 40px;
   border-radius: 100%;
   margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   border: none;
   font-size: medium;
   cursor: pointer;
@@ -382,6 +453,8 @@ input:checked + .slider:before {
   height: 40px;
   border-radius: 100%;
   margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   border: none;
   font-size: medium;
   cursor: pointer;
@@ -409,19 +482,47 @@ input:checked + .slider:before {
 }
 
 #colorMix {
-  width: 40px;
-  height: 40px;
-  border-radius: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  width: 48px;
+  height: 50px;
   margin-right: 10px;
-  margin-top: 10px;
   border: none;
-  font-size: medium;
   cursor: pointer;
+}
+#colorMix::-webkit-color-swatch{
+  border-radius: 100%;
+}
+#colorMix::-moz-color-swatch{
   border-radius: 100%;
 }
 
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
 
+@keyframes slideLeft {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
 
+@keyframes slideRight {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes upDown {
+  0% { transform: translateY(50%); }
+  50% { transform: translateY(-50%); }
+  100% { transform: translateY(50%); }
+}
     </style>
 
     <div class="frame">
@@ -580,16 +681,37 @@ input:checked + .slider:before {
           <div class="effectContent">
             <div>
               <span>Animation:</span> <br />
-              <div class="size-Btn">
-                <button id="leftAnime"></button>
-                <button id="stopAnime"></button>
-                <button id="rightAnime"></button>
-                <button id="up-downAnime"></button>
+              <div class="anime-Btn">
+                <button id="leftAnime">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
+                  </svg>                  
+                </button>
+                <button id="stopAnime">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
+                  </svg>                  
+                </button>
+                <button id="rightAnime">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+                  </svg>                  
+                </button>
+                <button id="up-downAnime">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 7.5 7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5" />
+                  </svg>                  
+                </button>
               </div>
             </div>
             <div>
               <span>Speed:</span>
-              <div class="size-Btn">
+              <div class="speed-Btn">
+                <button id="none-speed">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636" />
+                  </svg>
+                </button>
                 <button id="speed0.5">0.5x</button>
                 <button id="speed1">1x</button>
                 <button id="speed1.5">1.5x</button>
@@ -598,7 +720,12 @@ input:checked + .slider:before {
             </div>
             <div>
               <span>Blink:</span>
-              <div class="size-Btn">
+              <div class="blink-Btn">
+                <button id="none-blink">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636" />
+                  </svg>
+                </button>
                 <button id="blink0.5">0.5x</button>
                 <button id="blink1">1x</button>
                 <button id="blink1.5">1.5x</button>
@@ -607,7 +734,12 @@ input:checked + .slider:before {
             </div>
             <div>
               <span>Filter:</span>
-              <div class="size-Btn">
+              <div class="filter-Btn">
+                <button id="none-filter">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636" />
+                  </svg>
+                </button>
                 <button id="filterText1"></button>
                 <button id="filterText2"></button>
               </div>
@@ -629,6 +761,11 @@ input:checked + .slider:before {
             <div class="image-Btn">
               <span>Background Image</span>
               <div class="img-Btn">
+                <button id="none-img">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636" />
+                  </svg>
+                </button>
                 <button id="img1"></button>
                 <button id="img2"></button>
                 <button id="img3"></button>
@@ -640,6 +777,11 @@ input:checked + .slider:before {
             <div class="background-Btn">
               <span>Background filter:</span>
               <div class="bgf-Btn">
+                <button id="none-bgf">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636" />
+                  </svg>
+                </button>
                 <button id="bgf1"></button>
                 <button id="bgf2"></button>
                 <button id="bgf3"></button>
@@ -848,6 +990,45 @@ input:checked + .slider:before {
             for (var i = 0; i < displayTextEle.length; i++) {
                 displayTextEle.item(i).style.textShadow = shadowStyle;
             }
+        });
+        // Add event listeners for the animation buttons
+        const leftAnime = document.getElementById('leftAnime');
+        const stopAnime = document.getElementById('stopAnime');
+        const rightAnime = document.getElementById('rightAnime');
+        const upDownAnime = document.getElementById('up-downAnime');
+
+        let currentAnimation = null;
+
+        leftAnime.addEventListener('click', () => {
+        // Apply left animation
+        for (let i = 0; i < displayTextEle.length; i++) {
+            displayTextEle[i].style.animation = 'slideLeft 2s infinite linear';
+        }
+        currentAnimation = 'slideLeft';
+        });
+
+        stopAnime.addEventListener('click', () => {
+            // Stop the animation
+            for (let i = 0; i < displayTextEle.length; i++) {
+                displayTextEle[i].style.animation = 'none';
+            }
+            currentAnimation = null;
+        });
+
+        rightAnime.addEventListener('click', () => {
+            // Apply right animation
+            for (let i = 0; i < displayTextEle.length; i++) {
+                displayTextEle[i].style.animation = 'slideRight 2s infinite linear';
+            }
+            currentAnimation = 'slideRight';
+        });
+
+        upDownAnime.addEventListener('click', () => {
+            // Apply up-down animation
+            for (let i = 0; i < displayTextEle.length; i++) {
+                displayTextEle[i].style.animation = 'upDown 2s infinite linear';
+            }
+            currentAnimation = 'upDown';
         });
     </script>
   </body>
