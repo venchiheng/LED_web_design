@@ -42,14 +42,15 @@
   border-radius: 20px;
   padding: 20px;
 }
+#textCanvas {
+ 
+ 
+ height: 180px;
+ border: 1px solid #0e0707; /* Optional border for visibility */
+}
 
 
-canvas {
-   border: 1px solid #000;
-   margin-top: 20px;
 
-  
-  }
 
 h1 {
   text-align: center;
@@ -530,12 +531,7 @@ input:checked + .slider:before {
   50% { transform: translateY(-50%); }
   100% { transform: translateY(50%); }
 }
-#textCanvas {
- 
-  width: 100%;
-  height: 100%;
-  border: 1px solid #ccc; /* Optional border for visibility */
-}
+
         
     </style>
 
@@ -545,7 +541,7 @@ input:checked + .slider:before {
         <!-- display text -->
         <div class="textWrap">
           <div class="displayContainer">
-            <canvas id="textCanvas"></canvas>
+            <canvas id="textCanvas" width="800" height="100"></canvas>
             <div class="displayText">
               
             </div>
@@ -819,7 +815,7 @@ input:checked + .slider:before {
         </div>
       </div>
     </div>
-    <canvas id="textCanvas" width="800" height="400"></canvas>
+   
     <script>
 
       
@@ -835,13 +831,7 @@ input:checked + .slider:before {
       let textContent = document.querySelector(".textContent");
       let effectContent = document.querySelector(".effectContent");
       let bgContent = document.querySelector(".bgContent");
-      
-     
-
-  // Example: draw some text
-  
-  // Add event listeners or other logic to draw on the canvas
-
+    
 
       
       inputTextEle.onkeyup = function () {
@@ -936,10 +926,16 @@ input:checked + .slider:before {
       });
 
       nextBtn.addEventListener("click", () => {
-        const inputTextEleValue = insertText.value;
-
+        const inputTextEleValue = inputTextEle.value;
+        const bgColor = document.body.style.backgroundColor;
+        const textColor = displayTextEle[0].style.color;
+        const fontFamily = displayTextEle[0].style.fontFamily;
         const dataParams = new URLSearchParams({
-            inputTextEle: inputTextEleValue
+            inputTextEle: inputTextEleValue,
+            bgColor: bgColor,
+            textColor: textColor,
+            fontFamily: fontFamily
+            
         }).toString();
 
         window.location.href = `display.html?${dataParams}`;
@@ -1063,7 +1059,7 @@ input:checked + .slider:before {
         document.addEventListener('DOMContentLoaded', function() {
     const canvas = document.getElementById('textCanvas');
     const ctx = canvas.getContext('2d');
-    const textInput = document.getElementById('textInput');
+    let inputTextEle = document.getElementById("insertText");
 
     // Set canvas dimensions
     canvas.width = window.innerWidth;
@@ -1195,20 +1191,19 @@ input:checked + .slider:before {
         direction = 1;
         angle = 0;
         particles = [];
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        canvas.style.display = 'block'; // Make sure canvas is visible
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas before applying new effect
 
-        switch (effectType) {
-            case '3d':
-                draw3DText();
-                break;
-            case 'metallic':
-                drawMetallicText();
-                break;
-            case 'fire':
-                drawFireText();
-                break;
-            default:
-                console.error('Invalid effect type:', effectType);
+        console.log('Effect type selected:', effectType);
+
+        if (effectType === '3d') {
+            draw3DText();
+        } else if (effectType === 'metallic') {
+            drawMetallicText();
+        } else if (effectType === 'fire') {
+            drawFireText();
+        } else {
+            console.error('Invalid effect type:', effectType);
         }
     }
 
