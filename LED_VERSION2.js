@@ -111,6 +111,8 @@ nextBtn.addEventListener("click", () => {
     const animation = currentAnimation || 'none';
     const textShadow = shadowToggle.checked ? "2px 2px 4px #000000" : "none";
     const speed = localStorage.getItem('speed') || 1;
+    const backgroundImage = document.querySelector('.displayContainer img').src || '';
+
     const dataParams = new URLSearchParams({
         inputTextEle: inputTextEleValue,
         bgColor: bgColor,
@@ -118,7 +120,8 @@ nextBtn.addEventListener("click", () => {
         fontFamily: fontFamily,
         animation: animation,
         textShadow: textShadow,
-        speed: speed
+        speed: speed,
+        backgroundImage: backgroundImage
     }).toString();
 
     window.location.href = `display.html?${dataParams}`;
@@ -453,7 +456,7 @@ colorBackgroundMixInput.addEventListener("input", (event) => {
     // Initial effect display
     handleEffectChange(effect);
 });
-const displayContainer = document.querySelector('.displayContainer');
+        const displayContainer = document.querySelector('.displayContainer');
         const displayedImage = displayContainer.querySelector('img');
 
         const changeBackgroundImg = (newImg) => { 

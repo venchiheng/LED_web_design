@@ -60,7 +60,7 @@
     </style>
 </head>
 <body>
-    <div class="display-container">
+    <div class="display-container" id="displayContainer">
         <div class="display-text" id="displayText"></div>
     </div>
 
@@ -76,7 +76,7 @@
             const animation = urlParams.get('animation') || 'none';
             const textShadow = urlParams.get('textShadow') || 'none';
             const speed = parseFloat(urlParams.get('speed')) || 0.5;
-
+            const backgroundImage = urlParams.get('backgroundImage') || '';
            
         
             document.body.style.backgroundColor = backgroundColorValue;
@@ -84,6 +84,8 @@
             // Adjust animation duration based on text length and blink speed factor
             const textLength = userInputValue.length;
             const animationDuration = Math.max(15, textLength * 1); // Ensure at least 15s duration
+
+
 
             const displayText = document.getElementById('displayText');
             displayText.textContent = userInputValue;
@@ -95,7 +97,12 @@
             if (animation !== 'none') {
                 displayText.style.animation = `${animation} ${speed}s infinite linear`;
             }
-
+            if (backgroundImage) {
+                const displayContainer = document.getElementById('displayContainer');
+                displayContainer.style.backgroundImage = `url(${backgroundImage})`;
+                displayContainer.style.objectFit = 'fill';
+                displayContainer.style.backgroundPosition = 'center';
+            }
 
             // Adjust blink animation duration if the parameter is provided
             const blinkSpeedParam = urlParams.get('blinkSpeed');
