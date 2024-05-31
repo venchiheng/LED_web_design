@@ -233,6 +233,22 @@
             currentAnimation = 'upDown';
         });
 
+        // Speed
+        function applySpeedRate(rate) {
+            localStorage.setItem('speed', rate);
+        
+              for (let i = 0; i < displayTextEle.length; i++) {
+                  displayTextEle[i].style.animationDuration = `${rate}s`;
+                  displayTextEle[i].classList.add('');
+              }
+          }
+  
+          document.getElementById('speed0.5').addEventListener('click', () => applySpeedRate(0.5));
+          document.getElementById('speed1').addEventListener('click', () => applySpeedRate(1));
+          document.getElementById('speed1.5').addEventListener('click', () => applySpeedRate(1.5));
+          document.getElementById('speed2').addEventListener('click', () => applySpeedRate(2));
+  
+
         // Text filter
         document.addEventListener('DOMContentLoaded', function() {
     const canvas = document.getElementById('textCanvas');
