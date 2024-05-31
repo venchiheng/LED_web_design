@@ -242,7 +242,8 @@
                   displayTextEle[i].classList.add('');
               }
           }
-  
+          
+          document.getElementById('none-speed').addEventListener('click', () => applySpeedRate(0));
           document.getElementById('speed0.5').addEventListener('click', () => applySpeedRate(0.5));
           document.getElementById('speed1').addEventListener('click', () => applySpeedRate(1));
           document.getElementById('speed1.5').addEventListener('click', () => applySpeedRate(1.5));
