@@ -179,6 +179,7 @@
             }
         }
 
+        document.getElementById('none-blink').addEventListener('click', () => applyBlinkRate(0));
         document.getElementById('blink0.5').addEventListener('click', () => applyBlinkRate(0.5));
         document.getElementById('blink1').addEventListener('click', () => applyBlinkRate(1));
         document.getElementById('blink1.5').addEventListener('click', () => applyBlinkRate(1.5));
@@ -242,7 +243,7 @@
                   displayTextEle[i].classList.add('');
               }
           }
-          
+  
           document.getElementById('none-speed').addEventListener('click', () => applySpeedRate(0));
           document.getElementById('speed0.5').addEventListener('click', () => applySpeedRate(0.5));
           document.getElementById('speed1').addEventListener('click', () => applySpeedRate(1));
@@ -252,179 +253,198 @@
 
         // Text filter
         document.addEventListener('DOMContentLoaded', function() {
-    const canvas = document.getElementById('textCanvas');
-    const ctx = canvas.getContext('2d');
-    let inputTextEle = document.getElementById("insertText");
+        const canvas = document.getElementById('textCanvas');
+        const ctx = canvas.getContext('2d');
+        let textInput = document.getElementById("insertText");
 
-    // Set canvas dimensions
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+        // Set canvas dimensions
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-    let text = "";
-    let effect = '3d';
-    let yOffset = 0;
-    let direction = 1;
-    let angle = 0;
-    let particles = [];
+        let text = "";
+        let effect = '3d';
+        let yOffset = 0;
+        let direction = 1;
+        let angle = 0;
+        let particles = [];
 
-    ctx.font = 'bold 80px Arial';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
+        ctx.font = 'bold 80px Arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
 
-    class Particle {
-        constructor(x, y) {
-            this.x = x;
-            this.y = y;
-            this.size = Math.random() * 20 + 10;
-            this.speedY = Math.random() * -1.5 - 0.5;
-            this.speedX = (Math.random() - 0.05) * 1;
-            this.alpha = 1;
-            this.color = `rgba(255, ${Math.floor(Math.random() * 155 + 100)}, 0, ${this.alpha})`;
-        }
-
-        update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
-            this.size *= 0.95;
-            this.alpha -= 0.03;
-            this.color = `rgba(255, ${Math.floor(Math.random() * 155 + 100)}, 0, ${this.alpha})`;
-        }
-
-        draw() {
-            ctx.globalAlpha = this.alpha;
-            ctx.fillStyle = this.color;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    }
-
-    function draw3DText() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        const frontColor = '#00f';
-        const sideColor = '#00a';
-        const letters = text.split('');
-
-        letters.forEach((letter, index) => {
-            const x = canvas.width / 2 - ctx.measureText(text).width / 2 + ctx.measureText(text.substring(0, index)).width;
-            const shakeOffset = Math.sin(angle + index) * 2;
-            const popOffset = Math.sin((angle + index) * 5) * 5;
-
-            for (let i = 0; i < 10; i++) {
-                ctx.fillStyle = sideColor;
-                ctx.fillText(letter, x - i + shakeOffset, canvas.height / 2 - i + yOffset + popOffset);
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 20 + 10;
+                this.speedY = Math.random() * -1.5 - 0.5;
+                this.speedX = (Math.random() - 0.05) * 1;
+                this.alpha = 1;
+                this.color = `rgba(255, ${Math.floor(Math.random() * 155 + 100)}, 0, ${this.alpha})`;
             }
 
-            ctx.fillStyle = frontColor;
-            ctx.fillText(letter, x + shakeOffset, canvas.height / 2 + yOffset + popOffset);
-        });
-
-        yOffset += direction;
-        if (yOffset > 20 || yOffset < -20) {
-            direction *= -1;
-        }
-
-        angle += 0.05;
-        requestAnimationFrame(draw3DText);
-    }
-
-    function drawMetallicText() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-        gradient.addColorStop(0, '#ccc');
-        gradient.addColorStop(0.25, '#fff');
-        gradient.addColorStop(0.5, '#888');
-        gradient.addColorStop(0.75, '#fff');
-        gradient.addColorStop(1, '#ccc');
-
-        ctx.fillStyle = gradient;
-        ctx.fillText(text, canvas.width / 2, canvas.height / 2 + yOffset);
-
-        ctx.strokeStyle = '#444';
-        ctx.lineWidth = 2;
-        ctx.strokeText(text, canvas.width / 2, canvas.height / 2 + yOffset);
-
-        yOffset += direction;
-        if (yOffset > 20 || yOffset < -20) {
-            direction *= -1;
-        }
-
-        requestAnimationFrame(drawMetallicText);
-    }
-
-    function drawFireText() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-        gradient.addColorStop(0, '#f00');
-        gradient.addColorStop(0.5, '#ffa500');
-        gradient.addColorStop(1, '#ff0');
-
-        ctx.fillStyle = gradient;
-        ctx.fillText(text, canvas.width / 2, canvas.height / 2);
-
-        const textWidth = ctx.measureText(text).width;
-        const textHeight = 80;
-        for (let i = 0; i < 5; i++) {
-            let x = canvas.width / 2 - textWidth / 2 + Math.random() * textWidth;
-            let y = canvas.height / 2 - textHeight / 2 + Math.random() * textHeight;
-            particles.push(new Particle(x, y));
-        }
-
-        particles.forEach((particle, index) => {
-            particle.update();
-            particle.draw();
-            if (particle.size < 1 || particle.alpha <= 0) {
-                particles.splice(index, 1);
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.size *= 0.95;
+                this.alpha -= 0.03;
+                this.color = `rgba(255, ${Math.floor(Math.random() * 155 + 100)}, 0, ${this.alpha})`;
             }
+
+            draw() {
+                ctx.globalAlpha = this.alpha;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function draw3DText() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const frontColor = '#00f';
+            const sideColor = '#00a';
+            const letters = text.split('');
+
+            letters.forEach((letter, index) => {
+                const x = canvas.width / 2 - ctx.measureText(text).width / 2 + ctx.measureText(text.substring(0, index)).width;
+                const shakeOffset = Math.sin(angle + index) * 2;
+                const popOffset = Math.sin((angle + index) * 5) * 5;
+
+                for (let i = 0; i < 10; i++) {
+                    ctx.fillStyle = sideColor;
+                    ctx.fillText(letter, x - i + shakeOffset, canvas.height / 2 - i + yOffset + popOffset);
+                }
+
+                ctx.fillStyle = frontColor;
+                ctx.fillText(letter, x + shakeOffset, canvas.height / 2 + yOffset + popOffset);
+            });
+
+            yOffset += direction;
+            if (yOffset > 20 || yOffset < -20) {
+                direction *= -1;
+            }
+
+            angle += 0.05;
+            requestAnimationFrame(draw3DText);
+        }
+
+        function drawMetallicText() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            gradient.addColorStop(0, '#ccc');
+            gradient.addColorStop(0.25, '#fff');
+            gradient.addColorStop(0.5, '#888');
+            gradient.addColorStop(0.75, '#fff');
+            gradient.addColorStop(1, '#ccc');
+
+            ctx.fillStyle = gradient;
+            ctx.fillText(text, canvas.width / 2, canvas.height / 2 + yOffset);
+
+            ctx.strokeStyle = '#444';
+            ctx.lineWidth = 2;
+            ctx.strokeText(text, canvas.width / 2, canvas.height / 2 + yOffset);
+
+            yOffset += direction;
+            if (yOffset > 20 || yOffset < -20) {
+                direction *= -1;
+            }
+
+            requestAnimationFrame(drawMetallicText);
+        }
+
+        function drawFireText() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            gradient.addColorStop(0, '#f00');
+            gradient.addColorStop(0.5, '#ffa500');
+            gradient.addColorStop(1, '#ff0');
+
+            ctx.fillStyle = gradient;
+            ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+
+            const textWidth = ctx.measureText(text).width;
+            const textHeight = 80;
+            for (let i = 0; i < 5; i++) {
+                let x = canvas.width / 2 - textWidth / 2 + Math.random() * textWidth;
+                let y = canvas.height / 2 - textHeight / 2 + Math.random() * textHeight;
+                particles.push(new Particle(x, y));
+            }
+
+            particles.forEach((particle, index) => {
+                particle.update();
+                particle.draw();
+                if (particle.size < 1 || particle.alpha <= 0) {
+                    particles.splice(index, 1);
+                }
+            });
+
+            requestAnimationFrame(drawFireText);
+        }
+
+        function handleEffectChange(effectType) {
+            yOffset = 0;
+            direction = 1;
+            angle = 0;
+            particles = [];
+            canvas.style.display = 'block'; // Make sure canvas is visible
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas before applying new effect
+            
+            console.log('Effect type selected:', effectType);
+
+            if (effectType === '3d') {
+                draw3DText();
+            } else if (effectType === 'metallic') {
+                drawMetallicText();
+            } else if (effectType === 'fire') {
+                drawFireText();
+            } else {
+                console.error('Invalid effect type:', effectType);
+            }
+        }
+
+        textInput.addEventListener('input', (e) => {
+            text = e.target.value;
+            handleEffectChange(effect);
         });
 
-        requestAnimationFrame(drawFireText);
-    }
+        document.getElementById('none-filter').addEventListener('click', () => {
+            canvas.style.visibility = 'hidden'; // Hide the canvas
+            for (let i = 0; i < displayTextEle.length; i++) {
+                displayTextEle[i].style.visibility = 'visible'; // Show the display text
+            }
+        });    
 
-    function handleEffectChange(effectType) {
-        yOffset = 0;
-        direction = 1;
-        angle = 0;
-        particles = [];
-        canvas.style.display = 'block'; // Make sure canvas is visible
-        ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas before applying new effect
-
-        console.log('Effect type selected:', effectType);
-
-        if (effectType === '3d') {
-            draw3DText();
-        } else if (effectType === 'metallic') {
-            drawMetallicText();
-        } else if (effectType === 'fire') {
-            drawFireText();
-        } else {
-            console.error('Invalid effect type:', effectType);
-        }
-    }
-
-    textInput.addEventListener('input', (e) => {
-        text = e.target.value;
+        document.getElementById('3dBtn').addEventListener('click', () => {
+            effect = '3d';
+            canvas.style.visibility = 'visible'; // Show the canvas
+            for (let i = 0; i < displayTextEle.length; i++) {
+                displayTextEle[i].style.visibility = 'hidden'; // Hide the display text
+            }
+            handleEffectChange('3d');
+        });
+        
+        document.getElementById('metallicBtn').addEventListener('click', () => {
+            effect = 'metallic';
+            canvas.style.visibility = 'visible'; // Show the canvas
+            for (let i = 0; i < displayTextEle.length; i++) {
+                displayTextEle[i].style.visibility = 'hidden'; // Hide the display text
+            }
+            handleEffectChange('metallic');
+        });
+        
+        document.getElementById('fireBtn').addEventListener('click', () => {
+            effect = 'fire';
+            canvas.style.visibility = 'visible'; // Show the canvas
+            for (let i = 0; i < displayTextEle.length; i++) {
+                displayTextEle[i].style.visibility = 'hidden'; // Hide the display text
+            }
+            handleEffectChange('fire');
+        });
+        
+        // Initial effect display
         handleEffectChange(effect);
     });
-
-    document.getElementById('3dBtn').addEventListener('click', () => {
-        effect = '3d';
-        handleEffectChange('3d');
-    });
-
-    document.getElementById('metallicBtn').addEventListener('click', () => {
-        effect = 'metallic';
-        handleEffectChange('metallic');
-    });
-
-    document.getElementById('fireBtn').addEventListener('click', () => {
-        effect = 'fire';
-        handleEffectChange('fire');
-    });
-
-    // Initial effect display
-    handleEffectChange(effect);
-});
 const displayContainer = document.querySelector('.displayContainer');
         const displayedImage = displayContainer.querySelector('img');
 

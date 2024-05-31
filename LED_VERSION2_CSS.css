@@ -4,14 +4,13 @@ border-radius: 20px;
 padding: 20px;
 }
 #textCanvas {
-
-
 height: 180px;
-border: 1px solid #0e0707; /* Optional border for visibility */
+width: 100%;
+position: absolute;
+z-index: 0;
+border: 1px solid black;
+visibility: hidden;
 }
-
-
-
 
 h1 {
 text-align: center;
@@ -28,7 +27,6 @@ border: 2px solid black;
 border-bottom: 3px solid black;
 margin-left: 40px;
 margin-right: 40px;
-
 }
 
 .displayContainer {
@@ -56,8 +54,10 @@ z-index: 0;
 }
 
 .displayText {
-color: white;
-animation: loopText 2.5s infinite linear, blink 1s infinite linear;
+    position: relative;
+    color: white;
+    animation: loopText 2.5s infinite linear, blink 1s infinite linear;
+    z-index: 1;
 }
 
 @keyframes loopText {
