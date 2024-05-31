@@ -100,7 +100,8 @@
             if (backgroundImage) {
                 const displayContainer = document.getElementById('displayContainer');
                 displayContainer.style.backgroundImage = `url(${backgroundImage})`;
-                displayContainer.style.objectFit = 'fill';
+                displayContainer.style.objectFit = 'cover';
+                displayContainer.style.width = '100%';
                 displayContainer.style.backgroundPosition = 'center';
             }
 
