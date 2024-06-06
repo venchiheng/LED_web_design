@@ -264,8 +264,8 @@ colorBackgroundMixInput.addEventListener("input", (event) => {
 
         // Text filter
         document.addEventListener('DOMContentLoaded', function() {
-    const canvas = document.getElementById('textCanvas');
-    const ctx = canvas.getContext('2d');
+       const canvas = document.getElementById('textCanvas');
+        const ctx = canvas.getContext('2d');
         let textInput = document.getElementById("insertText");
 
     // Set canvas dimensions
@@ -288,7 +288,7 @@ colorBackgroundMixInput.addEventListener("input", (event) => {
             this.x = x;
             this.y = y;
             this.size = Math.random() * 20 + 10;
-            this.speedY = Math.random() * -1.5 - 0.5;
+            this.speedY = Math.random() * -1.9 - 0.5;
             this.speedX = (Math.random() - 0.05) * 1;
             this.alpha = 1;
             this.color = `rgba(255, ${Math.floor(Math.random() * 155 + 100)}, 0, ${this.alpha})`;
@@ -297,7 +297,7 @@ colorBackgroundMixInput.addEventListener("input", (event) => {
         update() {
             this.x += this.speedX;
             this.y += this.speedY;
-            this.size *= 0.95;
+            this.size *= 0.5;
             this.alpha -= 0.03;
             this.color = `rgba(255, ${Math.floor(Math.random() * 155 + 100)}, 0, ${this.alpha})`;
         }
@@ -315,12 +315,12 @@ colorBackgroundMixInput.addEventListener("input", (event) => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         const frontColor = '#00f';
         const sideColor = '#00a';
-        const letters = text.split('');
+        const letters = text.split(' ');
 
         letters.forEach((letter, index) => {
             const x = canvas.width / 2 - ctx.measureText(text).width / 2 + ctx.measureText(text.substring(0, index)).width;
-            const shakeOffset = Math.sin(angle + index) * 2;
-            const popOffset = Math.sin((angle + index) * 5) * 5;
+            const shakeOffset = Math.sin(angle + index) * 0.5;
+            const popOffset = Math.sin((angle + index) * 1) * 5;
 
             for (let i = 0; i < 10; i++) {
                 ctx.fillStyle = sideColor;
@@ -332,7 +332,7 @@ colorBackgroundMixInput.addEventListener("input", (event) => {
         });
 
         yOffset += direction;
-        if (yOffset > 20 || yOffset < -20) {
+        if (yOffset > 10 || yOffset < -20) {
             direction *= -1;
         }
 
@@ -456,7 +456,7 @@ colorBackgroundMixInput.addEventListener("input", (event) => {
     // Initial effect display
     handleEffectChange(effect);
 });
-        const displayContainer = document.querySelector('.displayContainer');
+const displayContainer = document.querySelector('.displayContainer');
         const displayedImage = displayContainer.querySelector('img');
 
         const changeBackgroundImg = (newImg) => { 
