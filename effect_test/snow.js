@@ -1,4 +1,4 @@
-const c = document.getElementById('snow');
+const c = document.getElementById('snowCanvas');
 const ctx = c.getContext('2d');
 
 let totalSnow = 90;
@@ -66,4 +66,3 @@ const loop = () => {
     init();
     loop();
 })();
-

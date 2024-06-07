@@ -61,11 +61,15 @@
 </head>
 <body>
     <div class="display-container" id="displayContainer">
+      
         <div class="display-text" id="displayText"></div>
     </div>
-
+    <canvas id="textCanvas" width="800" height="800" ></canvas>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            
+
+           
             const urlParams = new URLSearchParams(window.location.search);
             
             const userInputValue = urlParams.get('inputTextEle') || 'Default Text';
@@ -77,6 +81,7 @@
             const textShadow = urlParams.get('textShadow') || 'none';
             const speed = parseFloat(urlParams.get('speed')) || 0.5;
             const backgroundImage = urlParams.get('backgroundImage') || '';
+            const textFilter = urlParams.get('textFilter') || 'none'; // Default text filter is 'none'
            
         
             document.body.style.backgroundColor = backgroundColorValue;

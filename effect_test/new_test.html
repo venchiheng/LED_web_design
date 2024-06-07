@@ -23,9 +23,13 @@
             height: 100%;
             display: none;
         }
+        #textInput{
+            width:300px;
+        }
     </style>
 </head>
 <body>
+    <input type="text" id="textInput" placeholder="Enter text here">
     <button id="bgf1">Snow effect</button>
     <button id="bgf2">Rain effect</button>
     <button id="bgf3">Firework effect</button>
@@ -40,12 +44,12 @@
     <script>
 
 let activeEffect = null;
+let userText = "";
 
         // Function to start snow effect
         function startSnowEffect(canvas) {
             const ctx = canvas.getContext('2d');
-
-    let snowflakes = [];
+            let snowflakes = [];
 
     function createSnowflake() {
         return {
@@ -80,6 +84,8 @@ let activeEffect = null;
             drawSnowflake(snowflake);
             updateSnowflake(snowflake);
         });
+        if (userText) { ctx.fillStyle = "white"; ctx.font = "30px Arial"; ctx.fillText(userText, canvas.width / 2, canvas.height / 2); }
+                requestAnimationFrame(draw);
 
         requestAnimationFrame(draw);
     }
@@ -102,9 +108,8 @@ let activeEffect = null;
 
         // Function to start rain effect
         function startRainEffect(canvas) {
-            const ctx = canvas.getContext('2d');
-
-let raindrops = [];
+        const ctx = canvas.getContext('2d');
+        let raindrops = [];
 
 function createRaindrop() {
     return {
@@ -139,6 +144,8 @@ function draw() {
         drawRaindrop(raindrop);
         updateRaindrop(raindrop);
     });
+    if (userText) { ctx.fillStyle = "white"; ctx.font = "30px Arial"; ctx.fillText(userText, canvas.width / 2, canvas.height / 2); }
+                requestAnimationFrame(draw);
 
     requestAnimationFrame(draw);
 }

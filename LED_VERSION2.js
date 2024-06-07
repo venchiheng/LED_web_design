@@ -112,6 +112,7 @@ nextBtn.addEventListener("click", () => {
     const textShadow = shadowToggle.checked ? "2px 2px 4px #000000" : "none";
     const speed = localStorage.getItem('speed') || 1;
     const backgroundImage = document.querySelector('.displayContainer img').src || '';
+    
 
     const dataParams = new URLSearchParams({
         inputTextEle: inputTextEleValue,
@@ -267,27 +268,29 @@ colorBackgroundMixInput.addEventListener("input", (event) => {
        const canvas = document.getElementById('textCanvas');
         const ctx = canvas.getContext('2d');
         let textInput = document.getElementById("insertText");
+        const colorInput = document.getElementById("colorInput");
 
     // Set canvas dimensions
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    let text = "";
+    let text = "Hello, World!";
+    let font = '70px Times New Roman';
+    let textColor = '#000000';
     let effect = '3d';
     let yOffset = 0;
     let direction = 1;
     let angle = 0;
     let particles = [];
 
-    ctx.font = 'bold 80px Arial';
+    ctx.font = font;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-
     class Particle {
         constructor(x, y) {
             this.x = x;
             this.y = y;
-            this.size = Math.random() * 20 + 10;
+            this.size = Math.random() * 5 + 1;
             this.speedY = Math.random() * -1.9 - 0.5;
             this.speedX = (Math.random() - 0.05) * 1;
             this.alpha = 1;
@@ -299,7 +302,7 @@ colorBackgroundMixInput.addEventListener("input", (event) => {
             this.y += this.speedY;
             this.size *= 0.5;
             this.alpha -= 0.03;
-            this.color = `rgba(255, ${Math.floor(Math.random() * 155 + 100)}, 0, ${this.alpha})`;
+            this.color = `rgba(255, ${Math.floor(Math.random() * 150 + 100)}, 0, ${this.alpha})`;
         }
 
         draw() {
@@ -309,36 +312,36 @@ colorBackgroundMixInput.addEventListener("input", (event) => {
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
         }
-    }
+    }   
 
     function draw3DText() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        const frontColor = '#00f';
-        const sideColor = '#00a';
-        const letters = text.split(' ');
+        const frontColor = textColor;
+        const sideColor = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 100)`;
+        const letters = text.split('');
+
+        
 
         letters.forEach((letter, index) => {
             const x = canvas.width / 2 - ctx.measureText(text).width / 2 + ctx.measureText(text.substring(0, index)).width;
-            const shakeOffset = Math.sin(angle + index) * 0.5;
-            const popOffset = Math.sin((angle + index) * 1) * 5;
 
-            for (let i = 0; i < 10; i++) {
+            // Draw 3D edges
+            for (let i = 0; i < 7; i++) {
                 ctx.fillStyle = sideColor;
-                ctx.fillText(letter, x - i + shakeOffset, canvas.height / 2 - i + yOffset + popOffset);
+                ctx.fillText(letter, x - i, canvas.height / 2 - i);
             }
 
+            // Draw the front face of the text
             ctx.fillStyle = frontColor;
-            ctx.fillText(letter, x + shakeOffset, canvas.height / 2 + yOffset + popOffset);
+            ctx.fillText(letter, x, canvas.height / 20);
         });
+    
 
-        yOffset += direction;
-        if (yOffset > 10 || yOffset < -20) {
-            direction *= -1;
-        }
-
-        angle += 0.05;
+   
         requestAnimationFrame(draw3DText);
     }
+   
+
 
     function drawMetallicText() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -367,7 +370,7 @@ colorBackgroundMixInput.addEventListener("input", (event) => {
     function drawFireText() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-        gradient.addColorStop(0, '#f00');
+        gradient.addColorStop(1, '#f00');
         gradient.addColorStop(0.5, '#ffa500');
         gradient.addColorStop(1, '#ff0');
 
@@ -393,6 +396,8 @@ colorBackgroundMixInput.addEventListener("input", (event) => {
         requestAnimationFrame(drawFireText);
     }
 
+    
+
     function handleEffectChange(effectType) {
         yOffset = 0;
         direction = 1;
@@ -409,7 +414,7 @@ colorBackgroundMixInput.addEventListener("input", (event) => {
             drawMetallicText();
         } else if (effectType === 'fire') {
             drawFireText();
-        } else {
+         } else {
             console.error('Invalid effect type:', effectType);
         }
     }
@@ -428,6 +433,7 @@ colorBackgroundMixInput.addEventListener("input", (event) => {
 
     document.getElementById('3dBtn').addEventListener('click', () => {
         effect = '3d';
+            
             canvas.style.visibility = 'visible'; // Show the canvas
             for (let i = 0; i < displayTextEle.length; i++) {
                 displayTextEle[i].style.visibility = 'hidden'; // Hide the display text
@@ -452,6 +458,7 @@ colorBackgroundMixInput.addEventListener("input", (event) => {
             }
         handleEffectChange('fire');
     });
+   
 
     // Initial effect display
     handleEffectChange(effect);
@@ -533,3 +540,681 @@ const displayContainer = document.querySelector('.displayContainer');
                 alert("Please select a JPG or PNG image file.");
             }
         });
+        // background filter
+        let activeEffect = null;
+          // Function to start snow effect
+          function startSnowEffect(canvas) {
+            const ctx = canvas.getContext('2d');
+            let snowflakes = [];
+
+    function createSnowflake() {
+        return {
+            x: Math.random() * canvas.width,
+            y: 0,
+            radius: Math.random() * 1 + 1,
+            speed: Math.random() * 3 + 1,
+            opacity: Math.random() * 0.5 + 0.5
+        };
+    }
+
+    function drawSnowflake(snowflake) {
+        ctx.beginPath();
+        ctx.arc(snowflake.x, snowflake.y, snowflake.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${snowflake.opacity})`;
+        ctx.fill();
+    }
+
+    function updateSnowflake(snowflake) {
+        snowflake.y += snowflake.speed;
+
+        if (snowflake.y > canvas.height) {
+            snowflake.y = 0;
+            snowflake.x = Math.random() * canvas.width;
+        }
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        snowflakes.forEach(snowflake => {
+            drawSnowflake(snowflake);
+            updateSnowflake(snowflake);
+        });
+        if (userText) { ctx.fillStyle = "white"; ctx.font = "30px Arial"; ctx.fillText(userText, canvas.width / 2, canvas.height / 2); }
+                requestAnimationFrame(draw);
+
+        requestAnimationFrame(draw);
+    }
+
+    function startSnowfall() {
+        snowflakes = [];
+        for (let i = 0; i < 100; i++) {
+            snowflakes.push(createSnowflake());
+        }
+        draw();
+    }
+
+    startSnowfall();
+        }
+
+        // Function to stop snow effect
+        function stopSnowEffect() {
+            cancelAnimationFrame(requestAnimationFrame);
+        }
+
+        // Function to start rain effect
+        function startRainEffect(canvas) {
+        const ctx = canvas.getContext('2d');
+        let raindrops = [];
+
+function createRaindrop() {
+    return {
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        length: Math.random() * 10 + 5,
+        speed: Math.random() * 6 + 4
+    };
+}
+
+function drawRaindrop(raindrop) {
+    ctx.beginPath();
+    ctx.moveTo(raindrop.x, raindrop.y);
+    ctx.lineTo(raindrop.x, raindrop.y + raindrop.length);
+    ctx.strokeStyle = 'rgba(0, 0, 255, 0.2)';
+    ctx.stroke();
+}
+
+function updateRaindrop(raindrop) {
+    raindrop.y += raindrop.speed;
+
+    if (raindrop.y > canvas.height) {
+        raindrop.y = -raindrop.length;
+        raindrop.x = Math.random() * canvas.width;
+    }
+}
+
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    raindrops.forEach(raindrop => {
+        drawRaindrop(raindrop);
+        updateRaindrop(raindrop);
+    });
+    if (userText) { ctx.fillStyle = "white"; ctx.font = "30px Arial"; ctx.fillText(userText, canvas.width / 2, canvas.height / 2); }
+                requestAnimationFrame(draw);
+
+    requestAnimationFrame(draw);
+}
+
+function startRainfall() {
+    raindrops = [];
+    for (let i = 0; i < 100; i++) {
+        raindrops.push(createRaindrop());
+    }
+    draw();
+}
+
+startRainfall();
+        }
+
+        // Function to stop rain effect
+        function stopRainEffect() {
+             cancelAnimationFrame(requestAnimationFrame);
+        }
+
+        // Function to start firework effect
+        function startFireworkEffect(canvas) {
+    const ctx = canvas.getContext('2d');
+
+    let canvasWidth = canvas.width;
+    let canvasHeight = canvas.height;
+    let fireworks = [];
+    let particles = [];
+
+    function setSize(canv) {
+        canv.style.width = (innerWidth) + "px";
+        canv.style.height = (innerHeight) + "px";
+        canvasWidth = innerWidth;
+        canvasHeight = innerHeight;
+
+        canv.width = innerWidth * window.devicePixelRatio;
+        canv.height = innerHeight * window.devicePixelRatio;
+        canvas.getContext("2d").scale(window.devicePixelRatio, window.devicePixelRatio);
+    }
+
+    function windowResized() {
+        setSize(canvas);
+        ctx.fillStyle = "#000000";
+        ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+    }
+
+    window.addEventListener("resize", windowResized);
+
+    function loop() {
+        ctx.globalAlpha = 0.1;
+        ctx.fillStyle = "#000000";
+        ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+        ctx.globalAlpha = 1;
+
+        for (let i = 0; i < fireworks.length; i++) {
+            let done = fireworks[i].update();
+            fireworks[i].draw();
+            if (done) fireworks.splice(i, 1);
+        }
+
+        for (let i = 0; i < particles.length; i++) {
+            particles[i].update();
+            particles[i].draw();
+            if (particles[i].lifetime > 80) particles.splice(i, 1);
+        }
+
+        if (Math.random() < 1 / 60) fireworks.push(new Firework(Math.random() * (canvasWidth - 200) + 100));
+    }
+
+    setInterval(loop, 1 / 60);
+
+    class Particle {
+        constructor(x, y, col) {
+            this.x = x;
+            this.y = y;
+            this.col = col;
+            this.vel = randomVec(2);
+            this.lifetime = 0;
+        }
+
+        update() {
+            this.x += this.vel.x;
+            this.y += this.vel.y;
+            this.vel.y += 0.02;
+            this.vel.x *= 0.99;
+            this.vel.y *= 0.99;
+            this.lifetime++;
+        }
+
+        draw() {
+            ctx.globalAlpha = Math.max(1 - this.lifetime / 80, 0);
+            ctx.fillStyle = this.col;
+            ctx.fillRect(this.x, this.y, 2, 2);
+        }
+    }
+
+    class Firework {
+        constructor(x) {
+            this.x = x;
+            this.y = canvasHeight;
+            this.isBlown = false;
+            this.col = randomCol();
+        }
+
+        update() {
+            this.y -= 3;
+            if (this.y < 350 - Math.sqrt(Math.random() * 500) * 40) {
+                this.isBlown = true;
+                for (let i = 0; i < 60; i++) {
+                    particles.push(new Particle(this.x, this.y, this.col))
+                }
+            }
+            return this.isBlown;
+        }
+
+        draw() {
+            ctx.globalAlpha = 1;
+            ctx.fillStyle = this.col;
+            ctx.fillRect(this.x, this.y, 2, 2);
+        }
+    }
+
+    function randomCol() {
+        var letter = '0123456789ABCDEF';
+        var nums = [];
+
+        for (var i = 0; i < 3; i++) {
+            nums[i] = Math.floor(Math.random() * 256);
+        }
+
+        let brightest = 0;
+        for (var i = 0; i < 3; i++) {
+            if (brightest < nums[i]) brightest = nums[i];
+        }
+
+        brightest /= 255;
+        for (var i = 0; i < 3; i++) {
+            nums[i] /= brightest;
+        }
+
+        let color = "#";
+        for (var i = 0; i < 3; i++) {
+            color += letter[Math.floor(nums[i] / 16)];
+            color += letter[Math.floor(nums[i] % 16)];
+        }
+        return color;
+    }
+
+    function randomVec(max) {
+        let dir = Math.random() * Math.PI * 2;
+        let spd = Math.random() * max;
+        return { x: Math.cos(dir) * spd, y: Math.sin(dir) * spd };
+    }
+
+    function onClick(e) {
+        fireworks.push(new Firework(e.clientX));
+    }
+
+   
+}
+    
+        // Function to start snow effect
+        function startSnowEffect(canvas) {
+            const ctx = canvas.getContext('2d');
+
+            let snowflakes = [];
+
+            function createSnowflake() {
+                return {
+                    x: Math.random() * canvas.width,
+                    y: 0,
+                    radius: Math.random() * 1 + 1,
+                    speed: Math.random() * 3 + 1,
+                    opacity: Math.random() * 0.5 + 0.5
+                };
+            }
+
+            function drawSnowflake(snowflake) {
+                ctx.beginPath();
+                ctx.arc(snowflake.x, snowflake.y, snowflake.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${snowflake.opacity})`;
+                ctx.fill();
+            }
+
+            function updateSnowflake(snowflake) {
+                snowflake.y += snowflake.speed;
+
+                if (snowflake.y > canvas.height) {
+                    snowflake.y = 0;
+                    snowflake.x = Math.random() * canvas.width;
+                }
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                snowflakes.forEach(snowflake => {
+                    drawSnowflake(snowflake);
+                    updateSnowflake(snowflake);
+                });
+
+                requestAnimationFrame(draw);
+            }
+
+            function startSnowfall() {
+                snowflakes = [];
+                for (let i = 0; i < 100; i++) {
+                    snowflakes.push(createSnowflake());
+                }
+                draw();
+            }
+
+            startSnowfall();
+        }
+
+        // Function to stop snow effect
+        function stopSnowEffect() {
+            cancelAnimationFrame(requestAnimationFrame);
+        }
+
+        // Function to start rain effect
+        function startRainEffect(canvas) {
+            const ctx = canvas.getContext('2d');
+
+            let raindrops = [];
+
+            function createRaindrop() {
+                return {
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    length: Math.random() * 10 + 5,
+                    speed: Math.random() * 6 + 4
+                };
+            }
+
+            function drawRaindrop(raindrop) {
+                ctx.beginPath();
+                ctx.moveTo(raindrop.x, raindrop.y);
+                ctx.lineTo(raindrop.x, raindrop.y + raindrop.length);
+                ctx.strokeStyle = 'rgba(0, 0, 255, 0.2)';
+                ctx.stroke();
+            }
+
+            function updateRaindrop(raindrop) {
+                raindrop.y += raindrop.speed;
+
+                if (raindrop.y > canvas.height) {
+                    raindrop.y = -raindrop.length;
+                    raindrop.x = Math.random() * canvas.width;
+                }
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                raindrops.forEach(raindrop => {
+                    drawRaindrop(raindrop);
+                    updateRaindrop(raindrop);
+                });
+
+                requestAnimationFrame(draw);
+            }
+
+            function startRainfall() {
+                raindrops = [];
+                for (let i = 0; i < 100; i++) {
+                    raindrops.push(createRaindrop());
+                }
+                draw();
+            }
+
+            startRainfall();
+        }
+
+        // Function to stop rain effect
+        function stopRainEffect() {
+            cancelAnimationFrame(requestAnimationFrame);
+        }
+
+        // Function to start firework effect
+        function startFireworkEffect(canvas) {
+            let ctx = canvas.getContext("2d");
+            let width, height;
+            let fireworks = [];
+            let particles = [];
+
+            function setup() {
+                setSize(canvas);
+                ctx.fillStyle = "#000000";
+                ctx.fillRect(0, 0, width, height);
+                fireworks.push(new Firework(Math.random() * (width - 200) + 100));
+                window.addEventListener("resize", windowResized);
+                document.addEventListener("click", onClick);
+            }
+
+            function loop() {
+                ctx.globalAlpha = 0.1;
+                ctx.fillStyle = "#000000";
+                ctx.fillRect(0, 0, width, height);
+                ctx.globalAlpha = 1;
+
+                for (let i = 0; i < fireworks.length; i++) {
+                    let done = fireworks[i].update();
+                    fireworks[i].draw();
+                    if (done) fireworks.splice(i, 1);
+                }
+
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw();
+                    if (particles[i].lifetime > 80) particles.splice(i, 1);
+                }
+
+                if (Math.random() < 1 / 60) fireworks.push(new Firework(Math.random() * (width - 200) + 100));
+                requestAnimationFrame(loop);
+            }
+
+            class Particle {
+                constructor(x, y, col) {
+                    this.x = x;
+                    this.y = y;
+                    this.col = col;
+                    this.vel = randomVec(2);
+                    this.lifetime = 0;
+                }
+
+                update() {
+                    this.x += this.vel.x;
+                    this.y += this.vel.y;
+                    this.vel.y += 0.02;
+                    this.vel.x *= 0.99;
+                    this.vel.y *= 0.99;
+                    this.lifetime++;
+                }
+
+                draw() {
+                    ctx.globalAlpha = Math.max(1 - this.lifetime / 80, 0);
+                    ctx.fillStyle = this.col;
+                    ctx.fillRect(this.x, this.y, 2, 2);
+                }
+            }
+
+            class Firework {
+                constructor(x) {
+                    this.x = x;
+                    this.y = height;
+                    this.isBlown = false;
+                    this.col = randomCol();
+                }
+
+                update() {
+                    this.y -= 3;
+                    if (this.y < 350 - Math.sqrt(Math.random() * 500) * 40) {
+                        this.isBlown = true;
+                        for (let i = 0; i < 60; i++) {
+                            particles.push(new Particle(this.x, this.y, this.col));
+                        }
+                    }
+                    return this.isBlown;
+                }
+
+                draw() {
+                    ctx.globalAlpha = 1;
+                    ctx.fillStyle = this.col;
+                    ctx.fillRect(this.x, this.y, 2, 2);
+                }
+            }
+
+            function randomCol() {
+                let letter = '0123456789ABCDEF';
+                let nums = [];
+
+                for (let i = 0; i < 3; i++) {
+                    nums[i] = Math.floor(Math.random() * 256);
+                }
+
+                let brightest = 0;
+                for (let i = 0; i < 3; i++) {
+                    if (brightest < nums[i]) brightest = nums[i];
+                }
+
+                brightest /= 255;
+                for (let i = 0; i < 3; i++) {
+                    nums[i] /= brightest;
+                }
+
+                let color = "#";
+                for (let i = 0; i < 3; i++) {
+                    color += letter[Math.floor(nums[i] / 16)];
+                    color += letter[Math.floor(nums[i] % 16)];
+                }
+                return color;
+            }
+
+            function randomVec(max) {
+                let dir = Math.random() * Math.PI * 2;
+                let spd = Math.random() * max;
+                return { x: Math.cos(dir) * spd, y: Math.sin(dir) * spd };
+            }
+
+            function setSize(canv) {
+                canv.style.width = (innerWidth) + "px";
+                canv.style.height = (innerHeight) + "px";
+                width = innerWidth;
+                height = innerHeight;
+
+                canv.width = innerWidth * window.devicePixelRatio;
+                canv.height = innerHeight * window.devicePixelRatio;
+                canvas.getContext("2d").scale(window.devicePixelRatio, window.devicePixelRatio);
+            }
+
+            function onClick(e) {
+                fireworks.push(new Firework(e.clientX));
+            }
+
+            function windowResized() {
+                setSize(canvas);
+                ctx.fillStyle = "#000000";
+                ctx.fillRect(0, 0, width, height);
+            }
+
+            setup();
+            requestAnimationFrame(loop);
+        }
+
+        // Function to stop firework effect
+        function stopFireworkEffect() {
+            cancelAnimationFrame(requestAnimationFrame);
+        }
+
+        // Function to start bubble effect
+        function startBubbleEffect(canvas) {
+            const ctx = canvas.getContext("2d");
+            let cwidth, cheight;
+            let bubbles = [];
+            let colors = ['#ff5252', '#ff4081', '#e040fb', '#7c4dff', '#53dff', '#40cdff', '#18ffff', '#64ffda', '#69f0ae'];
+
+            function reset() {
+                cwidth = window.innerWidth;
+                cheight = window.innerHeight;
+                canvas.width = cwidth;
+                canvas.height = cheight;
+            }
+
+            window.onresize = function() {
+                reset();
+            }
+
+            reset();
+
+            function newBubble() {
+                var bubble = {};
+                bubble.x = Math.random() * cwidth;
+                bubble.y = Math.random() * cheight;
+                bubble.size = Math.random() * 20 + 10;
+                bubble.color = colors[Math.floor(Math.random() * colors.length)];
+                bubble.speedX = Math.random() * 2 - 1; // Random speed in X direction
+                bubble.speedY = Math.random() * 2 - 1; // Random speed in Y direction
+                bubbles.push(bubble);
+            }
+
+            function step() {
+                ctx.clearRect(0, 0, cwidth, cheight);
+
+                if (bubbles.length < 20 && Math.random() > 0.9) {
+                    newBubble();
+                }
+
+                for (var i = 0; i < bubbles.length; i++) {
+                    var bubble = bubbles[i];
+                    bubble.x += bubble.speedX;
+                    bubble.y += bubble.speedY;
+
+                    ctx.beginPath();
+                    ctx.arc(bubble.x, bubble.y, bubble.size, 0, 2 * Math.PI);
+                    ctx.fillStyle = bubble.color;
+                    ctx.fill();
+
+                    // Wrap around the canvas edges
+                    if (bubble.x - bubble.size > cwidth) {
+                        bubble.x = -bubble.size;
+                    } else if (bubble.x + bubble.size < 0) {
+                        bubble.x = cwidth + bubble.size;
+                    }
+
+                    if (bubble.y - bubble.size > cheight) {
+                        bubble.y = -bubble.size;
+                    } else if (bubble.y + bubble.size < 0) {
+                        bubble.y = cheight + bubble.size;
+                    }
+                }
+
+                requestAnimationFrame(step);
+            }
+
+            step();
+        }
+    // Function to start bubble effect
+    
+        // Function to stop bubble effect
+        function stopBubbleEffect() {
+            const canvas = document.getElementById('bubbleCanvas');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function stopAllEffects() {
+            if (activeEffect === 'snow') {
+                stopSnowEffect();
+            } else if (activeEffect === 'rain') {
+                stopRainEffect();
+            } else if (activeEffect === 'firework') {
+                stopFireworkEffect();
+            } else if (activeEffect === 'bubble') {
+                stopBubbleEffect();
+            }
+            activeEffect = null;
+        }
+
+
+     
+        
+        // Toggle effect function
+        function toggleEffect(canvasId) {
+            var canvas = document.getElementById(canvasId);
+
+            if (canvas.style.display === 'none') {
+                stopAllEffects();
+                canvas.style.display = 'block';
+
+                if (canvasId === 'snowCanvas') {
+                    activeEffect = 'snow';
+                    startSnowEffect(canvas);
+                } else if (canvasId === 'rainCanvas') {
+                    activeEffect = 'rain';
+                    startRainEffect(canvas);
+                } else if (canvasId === 'fireworkCanvas') {
+                    startFireworkEffect(canvas);
+                } else if (canvasId === 'bubbleCanvas') {
+                    activeEffect = 'bubble';
+                    startBubbleEffect(canvas);
+                }
+            } else {
+                canvas.style.display = 'none';
+
+                if (canvasId === 'snowCanvas') {
+                    stopSnowEffect();
+                } else if (canvasId === 'rainCanvas') {
+                    stopRainEffect();
+                } else if (canvasId === 'fireworkCanvas') {
+                    stopFireworkEffect();
+                } else if (canvasId === 'bubbleCanvas') {
+                    stopBubbleEffect();
+                }
+            }
+        }
+
+        // Event listeners for button clicks
+        document.getElementById('bgf1').addEventListener('click', function() {
+            toggleEffect('snowCanvas');
+        });
+
+        document.getElementById('bgf2').addEventListener('click', function() {
+            toggleEffect('rainCanvas');
+        });
+
+        document.getElementById('bgf3').addEventListener('click', function() {
+            toggleEffect('fireworkCanvas');
+        });
+
+        document.getElementById('bgf4').addEventListener('click', function() {
+            toggleEffect('bubbleCanvas');
+        });
+        
+
+

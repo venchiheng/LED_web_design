@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display 3D Text</title>
+</head>
+<body>
+    <h1>Displaying 3D Text</h1>
+    <canvas id="displayCanvas"></canvas>
+    <div id="displayText"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('displayCanvas');
+            const ctx = canvas.getContext('2d');
+            const displayText = document.getElementById('displayText');
+
+            // Set canvas dimensions
+            canvas.width = 700;
+            canvas.height = 700;
+
+            const canvasData = localStorage.getItem('canvasData');
+            const img = new Image();
+            img.onload = function() {
+                ctx.drawImage(img, 0, 0); // Draw the canvas data on the display canvas
+                displayText.textContent = 'Your Text Here'; // Set the text content
+                displayText.style.color = 'white'; // Set the text color
+                displayText.style.fontSize = '24px'; // Set the font size
+                displayText.style.fontFamily = 'Arial, sans-serif'; // Set the font family
+                displayText.style.position = 'absolute'; // Set position to absolute
+                displayText.style.top = '50%'; // Center vertically
+                displayText.style.left = '50%'; // Center horizontally
+                displayText.style.transform = 'translate(-50%, -50%)'; // Center the text
+            };
+            img.src = canvasData; // Set the image source to the canvas data
+        });
+    </script>
+</body>
+</html>
