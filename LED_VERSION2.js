@@ -1304,7 +1304,7 @@ startRainfall();
             showGif('toothless.gif');
         });
         document.getElementById('bgf13').addEventListener('click', function() {
-            showGif('fishPond.gif');
+            showGif('shootingstar.gif');
         });
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
