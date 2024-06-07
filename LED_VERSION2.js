@@ -601,8 +601,8 @@ function createRaindrop() {
     return {
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        length: Math.random() * 10 + 5,
-        speed: Math.random() * 6 + 4
+        length: Math.random() * 150 + 50,
+        speed: Math.random() * 10 + 10
     };
 }
 
@@ -611,6 +611,7 @@ function drawRaindrop(raindrop) {
     ctx.moveTo(raindrop.x, raindrop.y);
     ctx.lineTo(raindrop.x, raindrop.y + raindrop.length);
     ctx.strokeStyle = 'rgba(0, 0, 255, 0.2)';
+    ctx.lineWidth = 5; 
     ctx.stroke();
 }
 
@@ -630,15 +631,14 @@ function draw() {
         drawRaindrop(raindrop);
         updateRaindrop(raindrop);
     });
-    if (userText) { ctx.fillStyle = "white"; ctx.font = "30px Arial"; ctx.fillText(userText, canvas.width / 2, canvas.height / 2); }
-                requestAnimationFrame(draw);
+   
 
     requestAnimationFrame(draw);
 }
 
 function startRainfall() {
     raindrops = [];
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 200; i++) {
         raindrops.push(createRaindrop());
     }
     draw();
