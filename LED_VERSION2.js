@@ -1205,6 +1205,12 @@ startRainfall();
         document.getElementById('bgf4').addEventListener('click', function() {
             toggleEffect('bubbleCanvas');
         });
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                window.location.href = 'LEDHTML_VERSION2.html'; // Update this URL as needed
+            }
+        });
         
 
 
