@@ -809,3 +809,9 @@ opacity: 0;
 50% { transform: translateY(-50%); }
 100% { transform: translateY(50%); }
 }
+.raleway-dots-regular {
+    font-family: "Raleway Dots", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
