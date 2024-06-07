@@ -56,7 +56,8 @@
             <canvas id="rainCanvas" width="1000" height="1000"></canvas>
             <canvas id="fireworkCanvas" width="1000" height="1000"></canvas>
             <canvas id="bubbleCanvas"  width="1000" height="1500"></canvas>
-            <img src="" alt="DisplayImg">
+            <img id="displayGif" src="" alt="displayGif">
+            <img src="" alt="DisplayImg" class="bgImg">
             <canvas id="textCanvas" width="1000" height="1000" ></canvas>
             <div class="displayText">
             </div>
@@ -83,22 +84,7 @@
                 />
               </svg>
             </button>
-            <button id="nextBtn">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="size-6"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                />
-              </svg>
-            </button>
+            <button id="nextBtn">Let's Go!</button>
             <div class="emoji-list" id="emojiList">
                 <span>&#128512;</span><span>&#128513;</span><span>&#128514;</span><span>&#128515;</span><span>&#128516;</span><span>&#128517;</span><span>&#128518;</span><span>&#128519;</span><span>&#128520;</span><span>&#128521;</span><span>&#128522;</span><span>&#128523;</span><span>&#128524;</span><span>&#128525;</span><span>&#128526;</span><span>&#128527;</span><span>&#128528;</span><span>&#128529;</span><span>&#128530;</span><span>&#128531;</span><span>&#128532;</span><span>&#128533;</span><span>&#128534;</span><span>&#128535;</span><span>&#128536;</span><span>&#128537;</span><span>&#128538;</span><span>&#128539;</span><span>&#128540;</span><span>&#128541;</span><span>&#128542;</span><span>&#128543;</span>
                 <span>&#128544;</span><span>&#128545;</span><span>&#128546;</span><span>&#128547;</span><span>&#128548;</span><span>&#128549;</span><span>&#128550;</span><span>&#128551;</span><span>&#128552;</span><span>&#128553;</span><span>&#128554;</span><span>&#128555;</span><span>&#128556;</span><span>&#128557;</span><span>&#128558;</span><span>&#128559;</span> <span>&#128560;</span><span>&#128561;</span><span>&#128562;</span><span>&#128563;</span><span>&#128564;</span><span>&#128565;</span><span>&#128566;</span><span>&#128567;</span><span>&#128577;</span><span>&#128578;</span><span>&#128579;</span><span>&#128580;</span><span>&#129296;</span><span>&#129297;</span><span>&#129298;</span><span>&#129299;</span>
@@ -129,213 +115,223 @@
             <button id="editorEffect">Effect</button>
             <button id="editorBg">Background</button>
           </div>
-          <div class="textContent">
-            <div>
-              <span>Font:</span> <br />
-              <select name="font" id="fontChooser">
-                <!-- insert Font -->
-                <option value="Arial">Arial</option>
-                <option value="Tiny5">Tiny5</option>
-                <option value="Pacifico">Pacifico</option>
-                <option value="Danfo">Danfo</option>
-                <option value="Creepster">Creepster</option>
-                <option value="Monoton">Monoton</option>
-                <option value="Kranky">Kranky</option>
-                <option value="Monofett">Monofett</option>
-                <option value="Frijole">Frijole</option>
-                <option value="Arial Black">Arial Black</option>
-                <option value="Comic Sans MS">Comic Sans MS</option>
-                <option value="Courier New">Courier New</option>
-                <option value="Georgia">Georgia</option>
-                <option value="Impact">Impact</option>
-                <option value="Lucida Console">Lucida Console</option>
-                <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
-                <option value="Palatino Linotype">Palatino Linotype</option>
-                <option value="Tahoma">Tahoma</option>
-                <option value="Times New Roman">Times New Roman</option>
-                <option value="Trebuchet MS">Trebuchet MS</option>
-                <option value="Verdana">Verdana</option>
-                <option value="'Open Sans', sans-serif">Open Sans</option>
-                <option value="'Roboto', sans-serif">Roboto</option>
-                <option value="'Montserrat', sans-serif">Montserrat</option>
-                <option value="'Lato', sans-serif">Lato</option>
-                <option value="'Oswald', sans-serif">Oswald</option>
-                <option value="'Raleway', sans-serif">Raleway</option>
-                <option value="'Poppins', sans-serif">Poppins</option>
-                <option value="'Battambang', sans-serif">Battambang</option>
-                <option value="'Chenla', sans-serif">Chenla</option>
-                <option value="'Content', sans-serif">Content</option>
-                <option value="'Dangrek', sans-serif">Dangrek</option>
-                <option value="'Hanuman', serif">Hanuman</option>
-                <option value="'Koulen', cursive">Koulen</option>
-                <option value="'Metal', sans-serif">Metal</option>
-                <option value="'Moul', serif">Moul</option>
-                <option value="'Odor Mean Chey', sans-serif">
-                  Odor Mean Chey
-                </option>
-                <option value="'Siemreap', sans-serif">Siemreap</option>
-                <option value="'Suwannaphum', sans-serif">Suwannaphum</option>
-                <option value="'Taprom', cursive">Taprom</option>
-                <option value="'Suwannaphum', serif">Suwannaphum</option>
-                <option value="'Bayon', sans-serif">Bayon</option>
-                <option value="'Khmer', serif">Khmer</option>
-              </select>
-            </div>
-            <div>
-              <span>Size:</span>
-              <div class="size-Btn">
-                <button id="size25">25</button>
-                <button id="size50">50</button>
-                <button id="size75">75</button>
-                <button id="size100">100</button>
+          <div class="ContentContainer">
+            <div class="textContent">
+              <div class="Font">
+                <span>Font:</span> <br />
+                <select name="font" id="fontChooser">
+                  <!-- insert Font -->
+                  <option value="Arial">Arial</option>
+                  <option value="Tiny5">Tiny5</option>
+                  <option value="Pacifico">Pacifico</option>
+                  <option value="Danfo">Danfo</option>
+                  <option value="Creepster">Creepster</option>
+                  <option value="Monoton">Monoton</option>
+                  <option value="Kranky">Kranky</option>
+                  <option value="Monofett">Monofett</option>
+                  <option value="Frijole">Frijole</option>
+                  <option value="Arial Black">Arial Black</option>
+                  <option value="Comic Sans MS">Comic Sans MS</option>
+                  <option value="Courier New">Courier New</option>
+                  <option value="Georgia">Georgia</option>
+                  <option value="Impact">Impact</option>
+                  <option value="Lucida Console">Lucida Console</option>
+                  <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+                  <option value="Palatino Linotype">Palatino Linotype</option>
+                  <option value="Tahoma">Tahoma</option>
+                  <option value="Times New Roman">Times New Roman</option>
+                  <option value="Trebuchet MS">Trebuchet MS</option>
+                  <option value="Verdana">Verdana</option>
+                  <option value="'Open Sans', sans-serif">Open Sans</option>
+                  <option value="'Roboto', sans-serif">Roboto</option>
+                  <option value="'Montserrat', sans-serif">Montserrat</option>
+                  <option value="'Lato', sans-serif">Lato</option>
+                  <option value="'Oswald', sans-serif">Oswald</option>
+                  <option value="'Raleway', sans-serif">Raleway</option>
+                  <option value="'Poppins', sans-serif">Poppins</option>
+                  <option value="'Battambang', sans-serif">Battambang</option>
+                  <option value="'Chenla', sans-serif">Chenla</option>
+                  <option value="'Content', sans-serif">Content</option>
+                  <option value="'Dangrek', sans-serif">Dangrek</option>
+                  <option value="'Hanuman', serif">Hanuman</option>
+                  <option value="'Koulen', cursive">Koulen</option>
+                  <option value="'Metal', sans-serif">Metal</option>
+                  <option value="'Moul', serif">Moul</option>
+                  <option value="'Odor Mean Chey', sans-serif">
+                    Odor Mean Chey
+                  </option>
+                  <option value="'Siemreap', sans-serif">Siemreap</option>
+                  <option value="'Suwannaphum', sans-serif">Suwannaphum</option>
+                  <option value="'Taprom', cursive">Taprom</option>
+                  <option value="'Suwannaphum', serif">Suwannaphum</option>
+                  <option value="'Bayon', sans-serif">Bayon</option>
+                  <option value="'Khmer', serif">Khmer</option>
+                </select>
               </div>
-            </div>
-            <div>
-              <span>Color:</span>
-              <div class="colorText-Btn">
-                <button id="colorTBlack"></button>
-                <button id="colorTWhite"></button>
-                <button id="colorTRed"></button>
-                <button id="colorTYellow"></button>
-                <button id="colorTGreen"></button>
-                <input type="color" name="colorMix" id="colorTMix" />
-              </div>
-            </div>
-            <div>
-              <span>Shadow:</span>
               <div>
-                <span>OFF</span>
-                <label class="switch">
-                  <input type="checkbox" placeholder="toggle" />
-                  <span class="slider round"></span>
-                </label>
-                <span>ON</span>
+                <span>Size:</span>
+                <div class="size-Btn">
+                  <button id="size25">25</button>
+                  <button id="size50">50</button>
+                  <button id="size75">75</button>
+                  <button id="size100">100</button>
+                </div>
+              </div>
+              <div>
+                <span>Color:</span>
+                <div class="colorText-Btn">
+                  <button id="colorTBlack"></button>
+                  <button id="colorTWhite"></button>
+                  <button id="colorTRed"></button>
+                  <button id="colorTYellow"></button>
+                  <button id="colorTGreen"></button>
+                  <input type="color" name="colorMix" id="colorTMix" />
+                </div>
+              </div>
+              <div>
+                <span>Shadow:</span>
+                <div>
+                  <span>OFF</span>
+                  <label class="switch">
+                    <input type="checkbox" placeholder="toggle" />
+                    <span class="slider round"></span>
+                  </label>
+                  <span>ON</span>
+                </div>
               </div>
             </div>
-          </div>
-          <!-- effect editor -->
-          <div class="effectContent">
-            <div>
-              <span>Animation:</span> <br />
-              <div class="anime-Btn">
-                <button id="leftAnime">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
-                  </svg>                  
-                </button>
-                <button id="stopAnime">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
-                  </svg>                  
-                </button>
-                <button id="rightAnime">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
-                  </svg>                  
-                </button>
-                <button id="up-downAnime">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 7.5 7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5" />
-                  </svg>                  
-                </button>
+            <!-- effect editor -->
+            <div class="effectContent">
+              <div class="Animation">
+                <span>Animation:</span> <br />
+                <div class="anime-Btn">
+                  <button id="leftAnime">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
+                    </svg>                  
+                  </button>
+                  <button id="stopAnime">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
+                    </svg>                  
+                  </button>
+                  <button id="rightAnime">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+                    </svg>                  
+                  </button>
+                  <button id="up-downAnime">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 7.5 7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5" />
+                    </svg>                  
+                  </button>
+                </div>
               </div>
-            </div>
-            <div>
-              <span>Speed:</span>
-              <div class="speed-Btn">
-                <button id="none-speed">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636" />
-                  </svg>
-                </button>
-                <button id="speed0.5" class="speed5">2x</button>
-                <button id="speed1">1.5x</button>
-                <button id="speed1.5" class="speed15">1x</button>
-                <button id="speed2">0.5x</button>
+              <div>
+                <span>Speed:</span>
+                <div class="speed-Btn">
+                  <button id="none-speed">
+                    <svg style="width: 35px; height: 35px; margin-left:-3px; margin-top:2px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636" />
+                    </svg>
+                  </button>
+                  <button id="speed0.5" class="speed5">2x</button>
+                  <button id="speed1">1.5x</button>
+                  <button id="speed1.5" class="speed15">1x</button>
+                  <button id="speed2">0.5x</button>
+                </div>
               </div>
-            </div>
-            <div>
-              <span>Blink:</span>
-              <div class="blink-Btn">
-                <button id="none-blink">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636" />
-                  </svg>
-                </button>
-                <button id="blink0.5" class="blink5">2x</button>
-                <button id="blink1">1.5x</button>
-                <button id="blink1.5" class="blink15">1x</button>
-                <button id="blink2">0.5x</button>
+              <div>
+                <span>Blink:</span>
+                <div class="blink-Btn">
+                  <button id="none-blink">
+                    <svg style="width: 35px; height: 35px; margin-left:-3px; margin-top:2px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636" />
+                    </svg>
+                  </button>
+                  <button id="blink0.5" class="blink5">2x</button>
+                  <button id="blink1">1.5x</button>
+                  <button id="blink1.5" class="blink15">1x</button>
+                  <button id="blink2">0.5x</button>
+                </div>
               </div>
-            </div>
-            <div>
-              <span>Filter:</span>
-              <div class="filter-Btn">
-                
-                <button id="none-filter">
-                  <svg style="width: 35px; height: 35px; margin-left:-3px; margin-top:2px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636" />
-                  </svg>
+              <div>
+                <span>Filter:</span>
+                <div class="filter-Btn">
+                  
+                  <button id="none-filter">
+                    <svg style="width: 35px; height: 35px; margin-left:-3px; margin-top:2px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636" />
+                    </svg>
 
-                </button>
-                <button id="3dBtn" class="threeD" style="width: 40px; height: 40px; background: url('3D.png') no-repeat center center / cover; border: none;"></button>
-                <button id="metallicBtn" style="width: 40px; height: 40px; background: url('Metallic.png') no-repeat center center / cover; border: none;"></button>
-                <button id="fireBtn" style="width: 40px; height: 40px; background: url('Fire.jpg') no-repeat center center / cover; border: none;"></button>
-                <button id="neonlight" style="width: 40px; height: 40px; background: url('Fire.jpg') no-repeat center center / cover; border: none;"></button>
+                  </button>
+                  <button id="3dBtn" class="threeD" style="width: 40px; height: 40px; background: url('3D.png') no-repeat center center / cover; border: none;"></button>
+                  <button id="metallicBtn" style="width: 40px; height: 40px; background: url('Metallic.png') no-repeat center center / cover; border: none;"></button>
+                  <button id="fireBtn" style="width: 40px; height: 40px; background: url('Fire.jpg') no-repeat center center / cover; border: none;"></button>
+                </div>
               </div>
             </div>
-          </div>
-          <!-- background editor -->
-          <div class="bgContent">
-            <div class="color-btn">
-              <span>Color:</span>
-              <div class="color-Btn">
-                <button id="colorBlack"></button>
-                <button id="colorWhite"></button>
-                <button id="colorRed"></button>
-                <button id="colorYellow"></button>
-                <button id="colorGreen"></button>
-                <input type="color" name="colorMix" id="colorMix" />
+            <!-- background editor -->
+            <div class="bgContent">
+              <div class="color-btn">
+                <span>Color:</span>
+                <div class="color-Btn">
+                  <button id="colorBlack"></button>
+                  <button id="colorWhite"></button>
+                  <button id="colorRed"></button>
+                  <button id="colorYellow"></button>
+                  <button id="colorGreen"></button>
+                  <input type="color" name="colorMix" id="colorMix" />
+                </div>
+              </div>
+              <div class="image-Btn">
+                <span>Background Image</span>
+                <div class="img-Btn">
+                  <button id="none-img">
+                    <svg style="width: 35px; height: 35px; margin-left:-3px; margin-top:2px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636" />
+                    </svg>
+                  </button>
+                  <button id="img1" style="width: 40px; height: 40px; background: url('love3.jpg') center / cover; border: none;"></button>
+                  <button id="img2" style="width: 40px; height: 40px; background: url('love18.jpg') center / cover; border: none;"></button>
+                  <button id="img3" style="width: 40px; height: 40px; background: url('love4.jpg') center / cover; border: none;"></button>
+                  <button id="img4" style="width: 40px; height: 40px; background: url('love13.jpg') center / cover; border: none;"></button>
+                  <button id="img5" style="width: 40px; height: 40px; background: url('love15.jpg') center / cover; border: none;"></button>
+                  <button id="img6" style="width: 40px; height: 40px; background: url('love7.jpg') center / cover; border: none;"></button>
+                  <button id="img7" style="width: 40px; height: 40px; background: url('love10.jpg') center / cover; border: 1px solid gray;"></button>
+                  <button id="img8" style="width: 40px; height: 40px; background: url('love9.jpg') center / cover; border: none;"></button>
+                  <button id="img9" >
+                    <svg style="margin-left:-5px; padding:5px; width: 30px; height: 30px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                    </svg> 
+                  </button>
+                  <input id="file" type="file" accept="image/png, image/jpeg" hidden/>
+              </div>
+              <div class="background-Btn">
+                <span>Background filter:</span>
+                <div class="bgf-Btn">
+                  <button id="none-bgf">
+                    <svg style="width: 35px; height: 35px; margin-left:-3px; margin-top:2px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636" />
+                    </svg>
+                  </button>
+                  <button id="bgf1" style="width: 40px; height: 40px; background: url('snow.jpg') center / cover; border: none;"></button>
+                  <button id="bgf2" style="width: 40px; height: 40px; background: url('rain.jpg') center / cover; border: none;"></button>
+                  <button id="bgf3" style="width: 40px; height: 40px; background: url('firework.jpg') center / cover; border: none;"></button>
+                  <button id="bgf4" style="width: 40px; height: 40px; background: url('bubble.png') center / cover; border: none;"></button>
+                  <button id="bgf5" style="width: 40px; height: 40px; background: url('gojoRun.jpg') center / cover; border: none;"></button>
+                  <button id="bgf6" style="width: 40px; height: 40px; background: url('ocean.png') center / cover; border: none;"></button>
+                  <button id="bgf7" style="width: 40px; height: 40px; background: url('heart.png') center / cover; border: none;"></button>
+                  <button id="bgf8" style="width: 40px; height: 40px; background: url('fireGif.png') center / cover; border: none;"></button>
+                  <button id="bgf9" style="width: 40px; height: 40px; background: url('train.png') center / cover; border: none;"></button>
+                  <button id="bgf10" style="width: 40px; height: 40px; background: url('sparkle.png') center / cover; border: none;"></button>
+                  <button id="bgf11" style="width: 40px; height: 40px; background: url('stream.png') center / cover; border: none;"></button>
+                  <button id="bgf12" style="width: 40px; height: 40px; background: url('toothless.png') center / cover; border: none;"></button>
+                  <button id="bgf13" style="width: 40px; height: 40px; background: url('fishPond.png') center / cover; border: none;"></button>             
+                </div>
               </div>
             </div>
-            <div class="image-Btn">
-              <span>Background Image</span>
-              <div class="img-Btn">
-                <button id="none-img">
-                  <svg style="margin-left:-5px; padding:5px; width: 30px; height: 30px; background-color: gainsboro; border-radius: 100%; cursor:pointer;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636" />
-                  </svg>
-                </button>
-                <button id="img1" style="width: 40px; height: 40px; background: url('love3.jpg') center / cover; border: none;"></button>
-                <button id="img2" style="width: 40px; height: 40px; background: url('love18.jpg') center / cover; border: none;"></button>
-                <button id="img3" style="width: 40px; height: 40px; background: url('love4.jpg') center / cover; border: none;"></button>
-                <button id="img4" style="width: 40px; height: 40px; background: url('love13.jpg') center / cover; border: none;"></button>
-                <button id="img5" style="width: 40px; height: 40px; background: url('love15.jpg') center / cover; border: none;"></button>
-                <button id="img6" style="width: 40px; height: 40px; background: url('love7.jpg') center / cover; border: none;"></button>
-                <button id="img7" style="width: 40px; height: 40px; background: url('love10.jpg') center / cover; border: 1px solid gray;"></button>
-                <button id="img8" style="width: 40px; height: 40px; background: url('love9.jpg') center / cover; border: none;"></button>
-                <button id="img9" >
-                  <svg style="margin-left:-5px; padding:5px; width: 30px; height: 30px; background-color: gainsboro; border-radius: 100%; cursor:pointer;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-                  </svg> 
-                </button>
-                <input id="file" type="file" accept="image/png, image/jpeg" hidden/>
-            </div>
-            <div class="background-Btn">
-              <span>Background filter:</span>
-              <div class="bgf-Btn">
-                <button id="none-bgf">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636" />
-                  </svg>
-                </button>
-                <button id="bgf1" style="width: 40px; height: 40px; background: url('snow.jpg') center / cover; border: none;"></button>
-                <button id="bgf2" style="width: 40px; height: 40px; background: url('rain.jpg') center / cover; border: none;"></button>
-                <button id="bgf3" style="width: 40px; height: 40px; background: url('firework.jpg') center / cover; border: none;"></button>
-                <button id="bgf4" style="width: 40px; height: 40px; background: url('bubble.png') center / cover; border: none;"></button>
-              </div>
-            </div>
-          </div>
+        </div>
         </div>
       </div>
     </div>

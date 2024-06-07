@@ -19,8 +19,8 @@ inputTextEle.onkeyup = function () {
 };
 
 let focus = "";
-
-textEditor.addEventListener("click", () => {
+// Named event handler functions
+function textEditorClickHandler() {
     resetBtnColor();
     hideAllContent();
     if (focus === textEditor.id) {
@@ -29,11 +29,11 @@ textEditor.addEventListener("click", () => {
     }
     focus = textEditor.id;
     textEditor.style.backgroundColor = "white";
-        textEditor.style.borderTopLeftRadius == "20px";
+    textEditor.style.borderTopLeftRadius = "20px";
     textContent.style.display = "block";
-});
+}
 
-effectEditor.addEventListener("click", () => {
+function effectEditorClickHandler() {
     resetBtnColor();
     hideAllContent();
     if (focus === effectEditor.id) {
@@ -43,9 +43,9 @@ effectEditor.addEventListener("click", () => {
     focus = effectEditor.id;
     effectEditor.style.backgroundColor = "white";
     effectContent.style.display = "block";
-});
+}
 
-bgEditor.addEventListener("click", () => {
+function bgEditorClickHandler() {
     resetBtnColor();
     hideAllContent();
     if (focus === bgEditor.id) {
@@ -55,19 +55,66 @@ bgEditor.addEventListener("click", () => {
     focus = bgEditor.id;
     bgEditor.style.backgroundColor = "white";
     bgContent.style.display = "block";
-});
+}
 
+// Function to reset button colors
+function resetBtnColor() {
+    textEditor.style.backgroundColor = "rgb(130, 206, 250)";
+    effectEditor.style.backgroundColor = "rgb(130, 206, 250)";
+    bgEditor.style.backgroundColor = "rgb(130, 206, 250)";
+}
+
+// Function to hide all content
 function hideAllContent() {
     textContent.style.display = "none";
     effectContent.style.display = "none";
     bgContent.style.display = "none";
 }
 
-function resetBtnColor() {
-    textEditor.style.backgroundColor = "rgb(130, 206, 250)";
-    effectEditor.style.backgroundColor = "rgb(130, 206, 250)";
-    bgEditor.style.backgroundColor = "rgb(130, 206, 250)";
+// Function to add event listeners for mobile screens
+function addEventListeners() {
+    textEditor.addEventListener("click", textEditorClickHandler);
+    effectEditor.addEventListener("click", effectEditorClickHandler);
+    bgEditor.addEventListener("click", bgEditorClickHandler);
 }
+
+// Function to remove event listeners for desktop screens
+function removeEventListeners() {
+    textEditor.removeEventListener("click", textEditorClickHandler);
+    effectEditor.removeEventListener("click", effectEditorClickHandler);
+    bgEditor.removeEventListener("click", bgEditorClickHandler);
+}
+
+// Function to handle the screen size change
+function handleScreenSizeChange() {
+    if (window.innerWidth < 640) {
+        addEventListeners();
+    } else {
+        removeEventListeners();
+        textEditor.style.backgroundColor = "rgb(130, 206, 250)";
+        effectEditor.style.backgroundColor = "rgb(130, 206, 250)";
+        bgEditor.style.backgroundColor = "rgb(130, 206, 250)";
+        // Ensure all content is shown on desktop
+        textContent.style.display = "block";
+        effectContent.style.display = "block";
+        bgContent.style.display = "block";
+    }
+}
+
+// Initial setup
+handleScreenSizeChange();
+
+// Recheck on window resize
+window.addEventListener("resize", handleScreenSizeChange);
+
+// Handle font chooser change
+fontChooser.addEventListener("change", () => {
+    const selectedFont = fontChooser.value;
+    for (let i = 0; i < displayTextEle.length; i++) {
+        displayTextEle.item(i).style.fontFamily = selectedFont;
+    }
+});
+
 
 fontChooser.addEventListener("change", () => {
     const selectedFont = fontChooser.value;
@@ -109,11 +156,14 @@ const displayFull = document.querySelector('.displayContainer');
 const nextBtn = document.querySelector('#nextBtn');
 const frame = document.querySelector('.frame');
 const Neoscript = document.querySelector('.Neoscript');
+const textWrap = document.querySelector('.textWrap');
 nextBtn.addEventListener('click', () => {
     Neoscript.style.display = 'none';
     displayFull.classList.toggle('expanded');
     inputTextContainer.style.display = 'none';
     editorContainer.style.display ='none';
+    textWrap.style.border = 'none';
+    textWrap.style.backgroundColor = 'white';
     
 });
 
@@ -1188,7 +1238,18 @@ startRainfall();
                 }
             }
         }
-
+        document.getElementById('none-bgf').addEventListener('click', function() {
+            const displayGif = document.getElementById('displayGif');
+            displayGif.style.display = 'none';
+            const snow = document.getElementById('snowCanvas');
+            const rain = document.getElementById('rainCanvas');
+            const firework = document.getElementById('fireworkCanvas');
+            const bubble = document.getElementById('bubbleCanvas');
+            snow.style.display = 'none';
+            rain.style.display = 'none';
+            firework.style.display = 'none';
+            bubble.style.display = 'none';
+        });
         // Event listeners for button clicks
         document.getElementById('bgf1').addEventListener('click', function() {
             toggleEffect('snowCanvas');
@@ -1206,6 +1267,45 @@ startRainfall();
             toggleEffect('bubbleCanvas');
         });
 
+        function showGif(gifSrc) {
+            const displayGif = document.getElementById('displayGif');
+            displayGif.src = gifSrc;
+            displayGif.style.display = 'block';
+        }
+        
+        document.getElementById('bgf5').addEventListener('click', function() {
+            showGif('gojoRun.gif');
+        });
+    
+        document.getElementById('bgf6').addEventListener('click', function() {
+            showGif('oce.gif');
+        });
+    
+        document.getElementById('bgf7').addEventListener('click', function() {
+            showGif('heart.gif'); 
+        });
+    
+        document.getElementById('bgf8').addEventListener('click', function() {
+            showGif('fireGif.gif'); 
+        });
+        document.getElementById('bgf9').addEventListener('click', function() {
+            showGif('train.gif');
+        });
+
+        document.getElementById('bgf10').addEventListener('click', function() {
+            showGif('sparkle.gif');
+        });
+
+        document.getElementById('bgf11').addEventListener('click', function() {
+            showGif('waterfall.gif');
+        });
+
+        document.getElementById('bgf12').addEventListener('click', function() {
+            showGif('toothless.gif');
+        });
+        document.getElementById('bgf13').addEventListener('click', function() {
+            showGif('fishPond.gif');
+        });
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 window.location.href = 'LEDHTML_VERSION2.html'; // Update this URL as needed

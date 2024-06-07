@@ -1,7 +1,5 @@
 .frame {
     background-color: white;
-    border-radius: 20px;
-    padding: 20px;
 }
 
 #textCanvas {
@@ -30,34 +28,32 @@
 }
 h1 {
     text-align: center;
-    font-size: 40px;
+    font-size: 25px;
     font-family: "Courier New", Courier, monospace;
 }
 
 .textWrap {
     align-items: center;
-    height: 500px;
+    height: 300px;
     background-color: lightskyblue;
     border-radius: 20px;
     border: 2px solid black;
     border-bottom: 3px solid black;
-    margin-left: 40px;
-    margin-right: 40px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 .displayContainer.expanded {
-    height: 92vh;
-    width: 92vw;
-    margin-top: 0px;
-    margin-left: 0px;
-    border-radius: 20px;
-    border: 1px solid;
-    right: 10px;
-    bottom: 3px;
+    height: 100vh;
+    width: 100vw;
+    margin-top: -10px;
+    margin-left: -28px;
+    border-radius: 5px;
+
 }
 
 .displayContainer {
     align-items: center;
-    height: 420px;
+    height: 220px;
     background-color: black;
     border-radius: 20px;
     border-bottom: 2px solid black;
@@ -75,7 +71,14 @@ h1 {
     display: none;
     z-index: 0;
 }
-
+#displayGif{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    display: none;
+    z-index: 0;
+}
 .displayText {
     position: absolute;
     color: white;
@@ -103,7 +106,7 @@ opacity: 0;
 }
 
 .inputText {
-height: 79px;
+height: 70px;
 background-color: lightskyblue;
 border-radius: 20px;
 display: flex;
@@ -112,7 +115,7 @@ align-items: center;
 
 #insertText {
 width: 100%;
-height: 45px;
+height: 46px;
 border-radius: 20px 0px 0px 20px;
 border: 2px solid black;
 margin-left: 10px;
@@ -155,11 +158,13 @@ background-color: rgb(159, 158, 158);
 }
 
 #nextBtn {
-width: 50px;
+width: 120px;
 height: 50px;
-color: black;
+color: white;
+font-size: normal;
+font-weight: bold;
 background: none;
-background-color: white;
+background-color: #2EE22A;
 border: 2px solid black;
 border-left: none;
 border-top-right-radius: 20px;
@@ -172,7 +177,7 @@ cursor: pointer;
 }
 .editorContainer {
 margin-top: 10px;
-height: 100vw;
+height: 540px;
 background-color: white;
 border-radius: 20px;
 border: 2px solid black;
@@ -193,7 +198,7 @@ justify-content: space-around;
 .editorChoice button {
 border: none;
 background-color: transparent;
-font-size: x-large;
+font-size: 20px;
 cursor: pointer;
 width: 100%;
 }
@@ -218,7 +223,7 @@ gap: 1%;
 
 span {
 color: black;
-font-size: x-large;
+font-size: 20px;
 }
 
 #fontChooser {
@@ -716,7 +721,62 @@ transition: transform 0.3s ease, box-shadow 0.3s ease;
     transform: translateY(-5px);
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
 }
+#bgf5:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#bgf6:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#bgf7:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#bgf8:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#bgf9:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#bgf10:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
 
+#bgf11:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+    
+}
+#bgf12:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#bgf13:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
 .color-Btn button {
 width: 40px;
 height: 40px;
@@ -819,3 +879,69 @@ opacity: 0;
     font-style: normal;
   }
   
+  @media only screen and (min-width: 640px) {
+    h1{
+        font-size: 50px;
+    }
+    .textWrap{
+        height: 400px;
+    }
+    .displayContainer{
+        height: 320px;
+    }
+    .ContentContainer{
+        display: flex;
+        flex-direction: row;
+    }
+    .editorChoice{
+        height: 50px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+    #editorText{
+        width: 57%;
+    }
+    #editorEffect{
+        width: 75%;
+    }
+    #editorBg{
+        width: 74%;
+    }
+    .textContent{
+        margin-left: 15px;
+        display: block;
+        margin-top: 0px;
+        width: 40%;
+        height: 490px;
+        border-right: 1px solid black;
+    }
+    .Font{
+        margin-top: 20px;
+    }
+    .effectContent{
+        margin-left: 0px;
+        display: block;
+        margin-top: 0px;
+        width: 55%;
+        height: 490px;
+        border-right: 1px solid black;
+    }
+    .Animation{
+        margin-top: 20px;
+    }
+    .bgContent{
+        margin-left: 0px;
+        display: block;
+        margin-top: 0px;
+        width: 50%;
+        height: 490px;
+    }
+    .color-btn{
+        margin-top: 20px;
+    }
+    #nextBtn{
+        font-size: large;
+    }
+
+  }
