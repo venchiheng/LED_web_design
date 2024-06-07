@@ -103,30 +103,20 @@ emojiList.addEventListener("click", (event) => {
     }
 });
 
-nextBtn.addEventListener("click", () => {
-    const inputTextEleValue = inputTextEle.value;
-    const bgColor = document.querySelector('.displayContainer').style.backgroundColor || 'white';
-    const textColor = displayTextEle[0].style.color || 'black';
-    const fontFamily = displayTextEle[0].style.fontFamily || 'Arial';
-    const animation = currentAnimation || 'none';
-    const textShadow = shadowToggle.checked ? "2px 2px 4px #000000" : "none";
-    const speed = localStorage.getItem('speed') || 1;
-    const backgroundImage = document.querySelector('.displayContainer img').src || '';
+const inputTextContainer = document.querySelector('.inputText');
+const editorContainer = document.querySelector('.editorContainer');
+const displayFull = document.querySelector('.displayContainer');
+const nextBtn = document.querySelector('#nextBtn');
+const frame = document.querySelector('.frame');
+const Neoscript = document.querySelector('.Neoscript');
+nextBtn.addEventListener('click', () => {
+    Neoscript.style.display = 'none';
+    displayFull.classList.toggle('expanded');
+    inputTextContainer.style.display = 'none';
+    editorContainer.style.display ='none';
     
-
-    const dataParams = new URLSearchParams({
-        inputTextEle: inputTextEleValue,
-        bgColor: bgColor,
-        textColor: textColor,
-        fontFamily: fontFamily,
-        animation: animation,
-        textShadow: textShadow,
-        speed: speed,
-        backgroundImage: backgroundImage
-    }).toString();
-
-    window.location.href = `display.html?${dataParams}`;
 });
+
 
 const colorButtons = document.querySelectorAll(".colorText-Btn button");
 
