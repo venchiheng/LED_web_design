@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+html, body {
+  width:  100%;
+  height: 100%;
+  margin: 0;
+}
+#display{
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+}
+</style>
+<body>
+    <canvas id="display"></canvas>
+</body>
+<script>
+var c = document.getElementById("display");
+var ctx = c.getContext("2d");
+ctx.font = "30px Arial";
+ctx.canvas.width = window.innerWidth;
+ctx.canvas.height = window.innerHeight;
+ctx.fillText("Hello World",10,50);
+</script>
+</html>

@@ -43,12 +43,12 @@
         <!-- display text -->
         <div class="textWrap">
           <div class="displayContainer">
-            <img src="" alt="DisplayImg">
-            <canvas id="textCanvas" width="800" height="800" ></canvas>
             <canvas id="snowCanvas" width="800" height="800"></canvas>
             <canvas id="rainCanvas" width="800" height="800"></canvas>
             <canvas id="fireworkCanvas"></canvas>
             <canvas id="bubbleCanvas"  width="800" height="800"></canvas>
+            <img src="" alt="DisplayImg">
+            <canvas id="textCanvas" width="800" height="800" ></canvas>
             <div class="displayText">
             </div>
           </div>
@@ -231,9 +231,9 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636" />
                   </svg>
                 </button>
-                <button id="speed0.5">2x</button>
+                <button id="speed0.5" class="speed5">2x</button>
                 <button id="speed1">1.5x</button>
-                <button id="speed1.5">1x</button>
+                <button id="speed1.5" class="speed15">1x</button>
                 <button id="speed2">0.5x</button>
               </div>
             </div>
@@ -245,9 +245,9 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636" />
                   </svg>
                 </button>
-                <button id="blink0.5">2x</button>
+                <button id="blink0.5" class="blink5">2x</button>
                 <button id="blink1">1.5x</button>
-                <button id="blink1.5">1x</button>
+                <button id="blink1.5" class="blink15">1x</button>
                 <button id="blink2">0.5x</button>
               </div>
             </div>
@@ -261,7 +261,7 @@
                   </svg>
 
                 </button>
-                <button id="3dBtn" style="width: 40px; height: 40px; background: url('3D.png') no-repeat center center / cover; border: none;"></button>
+                <button id="3dBtn" class="threeD" style="width: 40px; height: 40px; background: url('3D.png') no-repeat center center / cover; border: none;"></button>
                 <button id="metallicBtn" style="width: 40px; height: 40px; background: url('Metallic.png') no-repeat center center / cover; border: none;"></button>
                 <button id="fireBtn" style="width: 40px; height: 40px; background: url('Fire.jpg') no-repeat center center / cover; border: none;"></button>
                 <button id="neonlight" style="width: 40px; height: 40px; background: url('Fire.jpg') no-repeat center center / cover; border: none;"></button>
@@ -312,12 +312,10 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636" />
                   </svg>
                 </button>
-                <button id="bgf1">Snow effect</button>
-                <button id="bgf2">Rain effect</button>
-                <button id="bgf3">Firework effect</button>
-                <button id="bgf4">Bubble effect</button>
-                <button id="bgf5">non effect</button>
-            
+                <button id="bgf1" style="width: 40px; height: 40px; background: url('snow.jpg') center / cover; border: none;"></button>
+                <button id="bgf2" style="width: 40px; height: 40px; background: url('rain.jpg') center / cover; border: none;"></button>
+                <button id="bgf3" style="width: 40px; height: 40px; background: url('firework.jpg') center / cover; border: none;"></button>
+                <button id="bgf4" style="width: 40px; height: 40px; background: url('bubble.png') center / cover; border: none;"></button>
               </div>
             </div>
           </div>

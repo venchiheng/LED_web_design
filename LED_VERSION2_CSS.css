@@ -1,64 +1,78 @@
 .frame {
-background-color: white;
-border-radius: 20px;
-padding: 20px;
-}
-#textCanvas {
-height: 580px;
-width: 100%;
-position: absolute;
-z-index: 0;
-border: 1px solid black;
-visibility: hidden;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
 }
 
+#textCanvas {
+    height: 580px;
+    width: 100%;
+    position: absolute;
+    z-index: 0;
+    border: 1px solid black;
+    visibility: hidden;
+}
+#snowCanvas{
+    position: absolute;
+    z-index: 1;
+}
+#rainCanvas{
+    position: absolute;
+    z-index: 1;
+}
+#fireworkCanvas{
+    position: absolute;
+    z-index: 1;
+}
+#bubbleCanvas{
+    position: absolute;
+    z-index: 1;
+}
 h1 {
-text-align: center;
-font-size: 40px;
-font-family: "Courier New", Courier, monospace;
+    text-align: center;
+    font-size: 40px;
+    font-family: "Courier New", Courier, monospace;
 }
 
 .textWrap {
-align-items: center;
-height: 253px;
-background-color: lightskyblue;
-border-radius: 20px;
-border: 2px solid black;
-border-bottom: 3px solid black;
-margin-left: 40px;
-margin-right: 40px;
+    align-items: center;
+    height: 253px;
+    background-color: lightskyblue;
+    border-radius: 20px;
+    border: 2px solid black;
+    border-bottom: 3px solid black;
+    margin-left: 40px;
+    margin-right: 40px;
 }
 
 .displayContainer {
-align-items: center;
-height: 180px;
-background-color: black;
-border-radius: 20px;
-border-bottom: 2px solid black;
-display: flex;
-justify-content: center;
-overflow: hidden;
-position: relative;
-display: flex; /* Use flexbox */
-justify-content: center; /* Center content horizontally */
-align-items: center;
-
+    align-items: center;
+    height: 180px;
+    background-color: black;
+    border-radius: 20px;
+    border-bottom: 2px solid black;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
 }
+
 .displayContainer img {
-position: absolute;
-width: 100%;
-height: 100%;
-object-fit: fill;
-display: none; 
-z-index: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    display: none;
+    z-index: 0;
 }
 
 .displayText {
-    position: relative;
+    position: absolute;
     color: white;
     animation: loopText 2.5s infinite linear, blink 1s infinite linear;
-    z-index: 1;
+    z-index: 10; /* Ensure this is higher than any other element inside .displayContainer */
 }
+
 
 @keyframes loopText {
 from {
@@ -106,7 +120,9 @@ border-left: 2px;
 border-right: 2px;
 cursor: pointer;
 }
-
+#emojiBtn:hover {
+    color: rgb(159, 158, 158);
+}
 .emoji-list {
 background-color: rgb(200, 208, 228);
 font-size: 24px;
@@ -141,7 +157,9 @@ border-bottom-right-radius: 20px;
 margin-right: 10px;
 cursor: pointer;
 }
-
+#nextBtn:hover {
+    color: rgb(159, 158, 158);
+}
 .editorContainer {
 margin-top: 10px;
 height: 100vw;
@@ -214,8 +232,32 @@ border: none;
 background-color: gainsboro;
 font-size: medium;
 cursor: pointer;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
+#size25:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#size50:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#size75:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#size100:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
 .colorText-Btn button {
 width: 40px;
 height: 40px;
@@ -226,27 +268,53 @@ margin-bottom: 10px;
 border: none;
 font-size: medium;
 cursor: pointer;
+
 }
 
 #colorTBlack {
 background-color: black;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#colorTBlack:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
 }
 
 #colorTWhite {
 background-color: white;
 border: 1px solid black;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#colorTWhite:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
 }
 
 #colorTRed {
 background-color: red;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#colorTRed:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
 }
 
 #colorTYellow {
 background-color: rgb(249, 213, 104);
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#colorTYellow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
 }
 
 #colorTGreen {
 background-color: greenyellow;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#colorTGreen:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
 }
 
 #colorTMix {
@@ -258,13 +326,20 @@ width: 48px;
 height: 50px;
 margin-right: 10px;
 border: none;
+border-radius: 100%;
 cursor: pointer;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 #colorTMix::-webkit-color-swatch{
 border-radius: 100%;
 }
 #colorTMix::-moz-color-swatch{
 border-radius: 100%;
+}
+#colorTMix:hover {
+    background-color: transparent;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
 }
 
 /* This is where we control on switch or toggle */
@@ -350,6 +425,31 @@ margin-bottom: 10px;
 border: none;
 font-size: medium;
 cursor: pointer;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#leftAnime:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#stopAnime:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#rightAnime:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#up-downAnime:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
 }
 .speed-Btn button {
 width: 40px;
@@ -361,9 +461,37 @@ border: none;
 font-size: medium;
 cursor: pointer;
 margin-top: 10px;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-#none-speed{
-/* position: absolute; */
+.speed5:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#speed1:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#speed2:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+.speed15:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#none-speed:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
 }
 .blink-Btn button {
 width: 40px;
@@ -375,10 +503,41 @@ border: none;
 font-size: medium;
 cursor: pointer;
 margin-top: 10px;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 #none-blink{
 /* position: absolute; */
 font-size: xx-small;
+}
+.blink5:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#blink1:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#blink2:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+.blink15:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#none-blink:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
 }
 .filter-Btn button {
 width: 40px;
@@ -390,10 +549,37 @@ border: none;
 font-size: medium;
 cursor: pointer;
 margin-top: 10px;
-
+transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-#none-filter{
-/* position: absolute; */
+#none-filter:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+.threeD:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#metallicBtn:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#fireBtn:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#neonlight:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
 }
 .bgContent {
 height: 100%;
@@ -416,8 +602,68 @@ margin-bottom: 10px;
 border: none;
 font-size: medium;
 cursor: pointer;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
+#none-img:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#img1:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#img2:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#img3:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#img4:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#img5:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#img6:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#img7:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#img8:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#img9:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
 .bgf-Btn button {
 width: 40px;
 height: 40px;
@@ -428,6 +674,37 @@ margin-bottom: 10px;
 border: none;
 font-size: medium;
 cursor: pointer;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#none-bgf:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#bgf1:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#bgf2:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#bgf3:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+#bgf4:hover{
+    background-color: gray;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
 }
 
 .color-Btn button {
@@ -440,29 +717,46 @@ margin-bottom: 10px;
 border: none;
 font-size: medium;
 cursor: pointer;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 #colorBlack {
 background-color: black;
+}
+#colorBlack:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
 }
 
 #colorWhite {
 background-color: white;
 border: 1px solid black;
 }
-
+#colorWhite:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
 #colorRed {
 background-color: red;
 }
-
+#colorRed:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
 #colorYellow {
 background-color: rgb(249, 213, 104);
 }
-
+#colorYellow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
 #colorGreen {
 background-color: greenyellow;
 }
-
+#colorGreen:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
 #colorMix {
 -webkit-appearance: none;
 -moz-appearance: none;
@@ -470,6 +764,7 @@ appearance: none;
 background-color: transparent;
 width: 48px;
 height: 50px;
+border-radius: 100%;
 margin-right: 10px;
 border: none;
 cursor: pointer;
@@ -480,7 +775,10 @@ border-radius: 100%;
 #colorMix::-moz-color-swatch{
 border-radius: 100%;
 }
-
+#colorMix:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
 @keyframes blink {
 0%, 100% {
 opacity: 1;
