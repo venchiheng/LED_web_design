@@ -156,21 +156,6 @@ margin-left: 5%;
 #emoji-list span:hover {
 background-color: rgb(159, 158, 158);
 }
-#backBtn{
-    position: absolute;
-    color: white;
-    background-color: gray;
-    font-size: x-large;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: row;
-    width: 50px;
-    border: none;
-    cursor: pointer;
-    z-index: 20;
-    margin-top: 15px;
-    display: none;
-}
 
 #nextBtn {
 width: 120px;
