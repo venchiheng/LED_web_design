@@ -43,10 +43,10 @@ h1 {
     margin-right: 20px;
 }
 .displayContainer.expanded {
-    height: 100vh;
-    width: 100vw;
+    height: 150vh;
+    width: 150vw;
     margin-top: -10px;
-    margin-left: -28px;
+    margin-left: -50px;
     border-radius: 5px;
 
 }
@@ -115,22 +115,23 @@ align-items: center;
 
 #insertText {
 width: 100%;
-height: 46px;
+height: 38px;
 border-radius: 20px 0px 0px 20px;
 border: 2px solid black;
 margin-left: 10px;
 border-right: none;
-font-size: large;
+font-size: medium;
 }
 
 #emojiBtn {
-width: 50px;
+width: 60px;
 height: 50px;
 color: black;
 background: none;
 background-color: white;
-border-left: 2px;
-border-right: 2px;
+border: 2px solid black;
+border-left: none;
+border-right: none;
 cursor: pointer;
 }
 #emojiBtn:hover {
@@ -156,6 +157,24 @@ margin-left: 5%;
 #emoji-list span:hover {
 background-color: rgb(159, 158, 158);
 }
+#backBtn{
+    position: absolute;
+    color: white;
+    background-color: gray;
+    font-size: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 90px;
+    border: none;
+    cursor: pointer;
+    z-index: 20;
+    margin-top: 15px;
+    display: none;
+}
 
 #nextBtn {
 width: 120px;
@@ -177,7 +196,7 @@ cursor: pointer;
 }
 .editorContainer {
 margin-top: 10px;
-height: 540px;
+height: 570px;
 background-color: white;
 border-radius: 20px;
 border: 2px solid black;
@@ -197,6 +216,7 @@ justify-content: space-around;
 
 .editorChoice button {
 border: none;
+color: black;
 background-color: transparent;
 font-size: 20px;
 cursor: pointer;
@@ -230,6 +250,7 @@ font-size: 20px;
 margin-top: 10px;
 width: 200px;
 height: 50px;
+color: black;
 margin-top: 10px;
 margin-bottom: 10px;
 font-size: large;
@@ -244,8 +265,9 @@ margin-right: 10px;
 margin-top: 10px;
 margin-bottom: 10px;
 border: none;
+color: black;
 background-color: gainsboro;
-font-size: medium;
+font-size: normal;
 cursor: pointer;
 transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -438,8 +460,9 @@ margin-right: 10px;
 margin-top: 10px;
 margin-bottom: 10px;
 border: none;
-font-size: medium;
+font-size: normal;
 cursor: pointer;
+color: black;
 transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 #leftAnime:hover{
@@ -473,10 +496,15 @@ border-radius: 100%;
 margin-right: 10px;
 margin-bottom: 10px;
 border: none;
-font-size: medium;
+font-size: normal;
+color: black;
 cursor: pointer;
 margin-top: 10px;
 transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#none-speed{
+    /* position: absolute; */
+    font-size: xx-small;
 }
 .speed5:hover{
     background-color: gray;
@@ -515,8 +543,9 @@ border-radius: 100%;
 margin-right: 10px;
 margin-bottom: 10px;
 border: none;
-font-size: medium;
+font-size: normal;
 cursor: pointer;
+color: black;
 margin-top: 10px;
 transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -561,10 +590,15 @@ border-radius: 100%;
 margin-right: 10px;
 margin-bottom: 10px;
 border: none;
-font-size: medium;
+font-size: normal;
 cursor: pointer;
 margin-top: 10px;
+color: black;
 transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#none-filter{
+    /* position: absolute; */
+    font-size: xx-small;
 }
 #none-filter:hover{
     background-color: gray;
@@ -615,9 +649,14 @@ margin-right: 10px;
 margin-top: 10px;
 margin-bottom: 10px;
 border: none;
-font-size: medium;
+font-size: normal;
 cursor: pointer;
+color: black;
 transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#none-img{
+    /* position: absolute; */
+    font-size: xx-small;
 }
 #none-img:hover{
     background-color: gray;
@@ -687,9 +726,14 @@ margin-right: 10px;
 margin-top: 10px;
 margin-bottom: 10px;
 border: none;
-font-size: medium;
+font-size: normal;
+color: black;
 cursor: pointer;
 transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#none-bgf{
+    /* position: absolute; */
+    font-size: xx-small;
 }
 #none-bgf:hover{
     background-color: gray;
@@ -880,6 +924,9 @@ opacity: 0;
   }
   
   @media only screen and (min-width: 640px) {
+    #insertText{
+        height: 45px;
+    }
     h1{
         font-size: 50px;
     }
@@ -913,7 +960,7 @@ opacity: 0;
         display: block;
         margin-top: 0px;
         width: 40%;
-        height: 490px;
+        height: 520px;
         border-right: 1px solid black;
     }
     .Font{
@@ -924,7 +971,7 @@ opacity: 0;
         display: block;
         margin-top: 0px;
         width: 55%;
-        height: 490px;
+        height: 520px;
         border-right: 1px solid black;
     }
     .Animation{
@@ -935,7 +982,7 @@ opacity: 0;
         display: block;
         margin-top: 0px;
         width: 50%;
-        height: 490px;
+        height: 520px;
     }
     .color-btn{
         margin-top: 20px;
