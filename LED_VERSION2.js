@@ -693,7 +693,6 @@ function startRainfall() {
     }
     draw();
 }
-
 startRainfall();
         }
 
@@ -1308,9 +1307,26 @@ startRainfall();
         });
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
-                window.location.href = 'LEDHTML_VERSION2.html'; // Update this URL as needed
+                window.location.href = 'LEDHTML_VERSION2.html';
             }
         });
+        const backBtn = document.querySelector('#backBtn');
+        backBtn.addEventListener('click', function(){
+            window.location.href = 'LEDHTML_VERSION2.html';
+        });
+
+        document.querySelector('.displayContainer').addEventListener('mousemove', function(){
+            if (event.currentTarget.classList.contains('expanded')) {
+                backBtn.style.display = 'block';
+            }
+        });
+        document.querySelector('.displayContainer').addEventListener('click', function(){
+            if (event.currentTarget.classList.contains('expanded')) {
+                backBtn.style.display = 'none';
+            }
+        });
+        
+
         
 
 
