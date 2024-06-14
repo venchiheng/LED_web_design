@@ -115,12 +115,12 @@ align-items: center;
 
 #insertText {
 width: 100%;
-height: 46px;
+height: 44px;
 border-radius: 20px 0px 0px 20px;
 border: 2px solid black;
 margin-left: 10px;
 border-right: none;
-font-size: large;
+font-size: medium;
 }
 
 #emojiBtn {
@@ -197,6 +197,7 @@ justify-content: space-around;
 
 .editorChoice button {
 border: none;
+color: black;
 background-color: transparent;
 font-size: 20px;
 cursor: pointer;
@@ -230,6 +231,7 @@ font-size: 20px;
 margin-top: 10px;
 width: 200px;
 height: 50px;
+color: black;
 margin-top: 10px;
 margin-bottom: 10px;
 font-size: large;
@@ -244,6 +246,7 @@ margin-right: 10px;
 margin-top: 10px;
 margin-bottom: 10px;
 border: none;
+color: black;
 background-color: gainsboro;
 font-size: medium;
 cursor: pointer;
@@ -440,6 +443,7 @@ margin-bottom: 10px;
 border: none;
 font-size: medium;
 cursor: pointer;
+color: black;
 transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 #leftAnime:hover{
@@ -474,6 +478,7 @@ margin-right: 10px;
 margin-bottom: 10px;
 border: none;
 font-size: medium;
+color: black;
 cursor: pointer;
 margin-top: 10px;
 transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -517,6 +522,7 @@ margin-bottom: 10px;
 border: none;
 font-size: medium;
 cursor: pointer;
+color: black;
 margin-top: 10px;
 transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -564,6 +570,7 @@ border: none;
 font-size: medium;
 cursor: pointer;
 margin-top: 10px;
+color: black;
 transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 #none-filter:hover{
@@ -617,6 +624,7 @@ margin-bottom: 10px;
 border: none;
 font-size: medium;
 cursor: pointer;
+color: black;
 transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 #none-img:hover{
@@ -688,6 +696,7 @@ margin-top: 10px;
 margin-bottom: 10px;
 border: none;
 font-size: medium;
+color: black;
 cursor: pointer;
 transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -880,6 +889,9 @@ opacity: 0;
   }
   
   @media only screen and (min-width: 640px) {
+    #insertText{
+        height: 45px;
+    }
     h1{
         font-size: 50px;
     }
