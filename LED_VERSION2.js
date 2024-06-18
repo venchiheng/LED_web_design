@@ -316,7 +316,6 @@ colorBackgroundMixInput.addEventListener("input", (event) => {
 
     let text = "Hello, World!";
     let font = '70px Times New Roman';
-    let textColor = '#000000';
     let effect = '3d';
     let yOffset = 0;
     let direction = 1;
@@ -356,30 +355,25 @@ colorBackgroundMixInput.addEventListener("input", (event) => {
 
     function draw3DText() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        const frontColor = textColor;
         const sideColor = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 100)`;
         const letters = text.split('');
-
-        
-
+    
         letters.forEach((letter, index) => {
             const x = canvas.width / 2 - ctx.measureText(text).width / 2 + ctx.measureText(text.substring(0, index)).width;
-
+    
             // Draw 3D edges
             for (let i = 0; i < 7; i++) {
                 ctx.fillStyle = sideColor;
                 ctx.fillText(letter, x - i, canvas.height / 2 - i);
             }
-
+    
             // Draw the front face of the text
-            ctx.fillStyle = frontColor;
-            ctx.fillText(letter, x, canvas.height / 20);
+            ctx.fillText(letter, x, canvas.height / 2  );
         });
     
-
-   
         requestAnimationFrame(draw3DText);
     }
+    
    
 
 
